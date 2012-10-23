@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DB3F18161636D71600ECB00B /* TemporalActiveArcsFULL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18151636D70300ECB00B /* TemporalActiveArcsFULL.cpp */; };
 		DB3F18241636D73200ECB00B /* evolve_sa.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18181636D73200ECB00B /* evolve_sa.cc */; };
 		DB3F18251636D73200ECB00B /* evolve.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181A1636D73200ECB00B /* evolve.cc */; };
 		DB3F18261636D73200ECB00B /* gml.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181C1636D73200ECB00B /* gml.cc */; };
 		DB3F18271636D73200ECB00B /* simulate.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181F1636D73200ECB00B /* simulate.cc */; };
 		DB3F18281636D73200ECB00B /* system.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18211636D73200ECB00B /* system.cc */; };
+		DBEBCC55163737AC00128517 /* Process_Trade_NodeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +47,8 @@
 		DB3F18211636D73200ECB00B /* system.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = system.cc; path = ../../../Development/Library/include/netevo/system.cc; sourceTree = "<group>"; };
 		DB3F18221636D73200ECB00B /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = system.h; path = ../../../Development/Library/include/netevo/system.h; sourceTree = "<group>"; };
 		DB3F18231636D73200ECB00B /* visualise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = visualise.h; path = ../../../Development/Library/include/netevo/visualise.h; sourceTree = "<group>"; };
+		DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Process_Trade_NodeData.cpp; path = DynamicNetSim/Process_Trade_NodeData.cpp; sourceTree = "<group>"; };
+		DBEBCC54163737AC00128517 /* Process_Trade_NodeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Process_Trade_NodeData.h; path = DynamicNetSim/Process_Trade_NodeData.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,8 @@
 		DB3F17FB1636D6E100ECB00B = {
 			isa = PBXGroup;
 			children = (
+				DBEBCC561637399200128517 /* data */,
+				DBEBCC511637379600128517 /* Processing */,
 				DB3F18171636D72800ECB00B /* netevo */,
 				DB3F18091636D6E100ECB00B /* DynamicNetSim */,
 				DB3F18071636D6E100ECB00B /* Products */,
@@ -105,6 +109,22 @@
 				DB3F18231636D73200ECB00B /* visualise.h */,
 			);
 			name = netevo;
+			sourceTree = "<group>";
+		};
+		DBEBCC511637379600128517 /* Processing */ = {
+			isa = PBXGroup;
+			children = (
+				DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */,
+				DBEBCC54163737AC00128517 /* Process_Trade_NodeData.h */,
+			);
+			name = Processing;
+			sourceTree = "<group>";
+		};
+		DBEBCC561637399200128517 /* data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,12 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB3F18161636D71600ECB00B /* TemporalActiveArcsFULL.cpp in Sources */,
 				DB3F18241636D73200ECB00B /* evolve_sa.cc in Sources */,
 				DB3F18251636D73200ECB00B /* evolve.cc in Sources */,
 				DB3F18261636D73200ECB00B /* gml.cc in Sources */,
 				DB3F18271636D73200ECB00B /* simulate.cc in Sources */,
 				DB3F18281636D73200ECB00B /* system.cc in Sources */,
+				DBEBCC55163737AC00128517 /* Process_Trade_NodeData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +288,7 @@
 				DB3F18121636D6E100ECB00B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

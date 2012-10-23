@@ -160,7 +160,7 @@ int main( void ){
         fileNodeData >> am_all;
         fileNodeData >> am_c;
         fileNodeData >> am_p;
-        
+                
         // Hash zuweisen ???
         mpxCo[ id ] = xCo;
         mpyCo[ id ] = yCo;
@@ -168,6 +168,8 @@ int main( void ){
         mpAmC[ id ] = am_c;
         mpAmP[ id ] = am_p;
     }
+    
+    cout << "Amount of nodes in the node data: " << mpAmP.size() << endl;
 
     // =========================================================================================
     // Assign new node maps
@@ -181,7 +183,10 @@ int main( void ){
     
     for ( ListDigraph::NodeIt n( myCulmiGraph ); n!=INVALID; ++n){
         xCoord[ n ] = mpxCo[ nameNodeMap[ n ] ];
-    
+        yCoord[ n ] = mpyCo[ nameNodeMap[ n ] ];
+        Amount_All[ n ]     = mpAmA[ nameNodeMap[ n ] ];
+        Amount_Cattle[ n ]  = mpAmC[ nameNodeMap[ n ] ];
+        Amount_Pork[ n ]    = mpAmP[ nameNodeMap[ n ] ];
     }
     
     
@@ -208,6 +213,7 @@ int main( void ){
         myEdgeListFile >> amount;
         myEdgeListFile >> day;
         
+        // Day -> Arc(vector)
         (dayActivityArcIDs[ day ]).push_back( findArc( myCulmiGraph,  myCulmiGraph.nodeFromId( origIDtoLemon[ from ] ),
                                                       myCulmiGraph.nodeFromId( origIDtoLemon[ to   ] ) ) );
     }
@@ -224,6 +230,10 @@ int main( void ){
     digraphWriter( myCulmiGraph, lemonFileOut)
     .nodeMap( "name", nameNodeMap )
     .nodeMap("xCoord", xCoord )
+    .nodeMap("yCoord", yCoord)
+    .nodeMap("size_all", Amount_All)
+    .nodeMap("size_cattle", Amount_Cattle)
+    .nodeMap("size_pork", Amount_Pork)
     .arcMap( "from", fromNdArcMap )
     .arcMap( "to" , toNdArcMap )
     .run();

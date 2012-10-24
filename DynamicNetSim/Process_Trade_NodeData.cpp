@@ -35,13 +35,15 @@ using namespace lemon;
     1.) Trade data file - daily arc set with amount
     2.) Node data file  - informations for each node
  This programm will 
- - read the trade file, create a LEMON graph out of it
- - read the node data file and assign the data to the LEMON graph (maps)
- - analyse the graph regarding to the trade process
+ + read the trade file, create a LEMON graph out of it
+ + read the node data file and assign the data to the LEMON graph (maps)
+ + analyse the graph regarding to the trade process
+ 
  
  -------------------------------------------------------------------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------------
  TO DO:
+ - Sind die Transaction/Flow maps mit int / Long Long ausreichend?
  - origIDtoLemon Map geht auch anders: IterableIntMap
  -------------------------------------------------------------------------------------------------------- */
 
@@ -68,16 +70,20 @@ int main( void ){
     
     Timer t;
     
-    string edgeListSource   = "/Users/sonneundasche/Programmierung/DATA/EinBundesland/02 Transport/tradeData_einKreis.csv";
-    string lemonFileTmp     = "/Users/sonneundasche/Programmierung/DATA/EinBundesland/03 Processed/tmp.lgf";
-    string lemonFileOut     = "/Users/sonneundasche/Programmierung/DATA/EinBundesland/03 Processed/tradeData_processed.lgf";
-    string nodeDataFile     = "/Users/sonneundasche/Programmierung/DATA/EinBundesland/01 Betriebsgröße/Daten_Bearbeitet.csv";
+    string edgeListSource   = "/Users/sonneundasche/Dropbox/FLI/DATA/EinBundesland/02 Transport/tradeData_einKreis.csv";
+    string lemonFileTmp     = "/Users/sonneundasche/Dropbox/FLI/DATA/EinBundesland/03 Processed/tmp.lgf";
+    string lemonFileOut     = "/Users/sonneundasche/Dropbox/FLI/DATA/EinBundesland/03 Processed/tradeData_processed.lgf";
+    string nodeDataFile     = "/Users/sonneundasche/Dropbox/FLI/DATA/EinBundesland/01 Betriebsgröße/Daten_Bearbeitet.csv";
     
     boost::unordered_set< unsigned int >                        uniqueNodes; // Mathematische Menge (set) der Knoten
     boost::unordered_set< pair< unsigned int, unsigned int > >  uniqueArcs;  // Menge der Kanten (set von Knoten-Paaren)
     //    vector< unsigned int >      vecAmount;
     //    vector< unsigned int >      vecDay;
-    
+  
+    // =========================================================================================
+    // Read the trade file + create LEMON Graph
+    // =========================================================================================
+
     ifstream    myEdgeListFile( edgeListSource );
     string      foo;  // kill first line, because it has the header
     getline(myEdgeListFile, foo);
@@ -99,6 +105,8 @@ int main( void ){
         
         
     }
+    
+    myEdgeListFile.close();
     cout << "Nodes: " << uniqueNodes.size() << " Arcs: " << uniqueArcs.size() << endl;;
     
     // ----------------------------------------------------------------------------------------
@@ -123,6 +131,8 @@ int main( void ){
         << (*iterArcs).first    << "\t"         // Zweiter Paar-Eintrag erhält die alten IDs, damit die Daten nicht beim Umwandeln verloren gehen
         << (*iterArcs).second   << endl;
     }
+
+    
     
     // =========================================================================================
     // Create Graph and Format in a Lemon friendly way
@@ -145,7 +155,7 @@ int main( void ){
     .run();
 
     // =========================================================================================
-    // READ NODE DATA FILE
+    // READ NODE DATA FILE + assign values to nodes
     // =========================================================================================
 
     ifstream    fileNodeData( nodeDataFile );
@@ -169,11 +179,12 @@ int main( void ){
         mpAmP[ id ] = am_p;
     }
     
+    fileNodeData.close();
     cout << "Amount of nodes in the node data: " << mpAmP.size() << endl;
 
     // =========================================================================================
     // Assign new node maps
-    // =========================================================================================
+    // Hash -> LEMON Map
     
     ListDigraph::NodeMap< unsigned int >    xCoord( myCulmiGraph );
     ListDigraph::NodeMap< unsigned int >    yCoord( myCulmiGraph );
@@ -187,21 +198,28 @@ int main( void ){
         Amount_All[ n ]     = mpAmA[ nameNodeMap[ n ] ];
         Amount_Cattle[ n ]  = mpAmC[ nameNodeMap[ n ] ];
         Amount_Pork[ n ]    = mpAmP[ nameNodeMap[ n ] ];
-    }
-    
-    
-    // =========================================================================================
-    // Create HashMap of time and active arc pairs
-    
-    
-    // Eine Map, die original KnotenIDs zu LEMON IDs zuweist (LemonMap Umkehr, statisch)
-    // Nötig, da ich die orginalIDs aus der Ursprungsdatei einlese
-    for (ListDigraph::NodeIt n( myCulmiGraph ) ; n!=INVALID; ++n) {
+
+        // Eine Map, die original KnotenIDs zu LEMON IDs zuweist (LemonMap Umkehr, statisch)
+        // Nötig, da ich die orginalIDs aus der Ursprungsdatei einlese
         origIDtoLemon[ nameNodeMap[ n ] ] = myCulmiGraph.id( n );
     }
-  
     
-    myEdgeListFile.close();
+    // =========================================================================================
+    // ANALYSE TRADE DATA + assign values to nodes & arcs
+    // =========================================================================================
+    
+    InDegMap< ListDigraph >                          nodeInDegree( myCulmiGraph );
+    OutDegMap< ListDigraph >                         nodeOutDegree( myCulmiGraph );
+    ListDigraph::NodeMap< int >                      nodeDegree( myCulmiGraph );
+    ListDigraph::NodeMap< unsigned long long >       nodeInFlow ( myCulmiGraph );
+    ListDigraph::NodeMap< unsigned long long >       nodeOutFlow ( myCulmiGraph );
+    ListDigraph::NodeMap< long int >                 nodeFlowDifference( myCulmiGraph );
+    ListDigraph::NodeMap< unsigned int >             nodeTransactions( myCulmiGraph );
+    ListDigraph::ArcMap< unsigned long long >        arcFlow( myCulmiGraph );
+    ListDigraph::ArcMap< unsigned int >              arcTransactions( myCulmiGraph );
+    ListDigraph::Arc                                 currentArc;
+    ListDigraph::Node                                fromNode, toNode;
+    
     myEdgeListFile.open( edgeListSource );
     getline(myEdgeListFile, foo);
     
@@ -213,16 +231,24 @@ int main( void ){
         myEdgeListFile >> amount;
         myEdgeListFile >> day;
         
-        // Day -> Arc(vector)
-        (dayActivityArcIDs[ day ]).push_back( findArc( myCulmiGraph,  myCulmiGraph.nodeFromId( origIDtoLemon[ from ] ),
-                                                      myCulmiGraph.nodeFromId( origIDtoLemon[ to   ] ) ) );
+        currentArc = findArc( myCulmiGraph,  myCulmiGraph.nodeFromId( origIDtoLemon[ from ] ),
+                                             myCulmiGraph.nodeFromId( origIDtoLemon[ to   ] ) );
+        fromNode   = myCulmiGraph.nodeFromId( origIDtoLemon[ from ] );
+        toNode     = myCulmiGraph.nodeFromId( origIDtoLemon[ to ] );
+        
+        nodeInFlow[ toNode ]            += amount;
+        nodeOutFlow[ fromNode ]         += amount;
+        nodeTransactions[ toNode ]      ++;
+        nodeTransactions[ fromNode ]    ++;
+        arcFlow[ currentArc ]           += amount;
+        arcTransactions[ currentArc ]   ++;
     }
-     // =========================================================================================
-    // ==================    Dies art von Map kann über alle true Werte iterieren   ============
-    //
-    IterableBoolMap< ListDigraph, ListDigraph::Arc >      myItBoolMap( myCulmiGraph, false );
-  
     
+    // Calculate flow difference and degree
+    for (ListDigraph::NodeIt n( myCulmiGraph ); n!=INVALID; ++n ){
+        nodeDegree[ n ]         = nodeInDegree[ n ] + nodeOutDegree[ n ];
+        nodeFlowDifference[ n ] = nodeInFlow[ n ] - nodeOutFlow[ n ];
+    }
     
     cout << "LEMON - Nodes: " << countNodes( myCulmiGraph ) << " Arcs: " << countArcs( myCulmiGraph ) << endl;
     
@@ -234,8 +260,17 @@ int main( void ){
     .nodeMap("size_all", Amount_All)
     .nodeMap("size_cattle", Amount_Cattle)
     .nodeMap("size_pork", Amount_Pork)
+    .nodeMap("degree", nodeDegree )
+    .nodeMap("inDegree", nodeInDegree)
+    .nodeMap("outDegree", nodeOutDegree)
+    .nodeMap("inFlow", nodeInFlow)
+    .nodeMap("outFlow", nodeOutFlow)
+    .nodeMap("flowDifference", nodeFlowDifference )
+    .nodeMap("transactions", nodeTransactions)
     .arcMap( "from", fromNdArcMap )
     .arcMap( "to" , toNdArcMap )
+    .arcMap("flow", arcFlow)
+    .arcMap("transactions", arcTransactions)
     .run();
     
 }

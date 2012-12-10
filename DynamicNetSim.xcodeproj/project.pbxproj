@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB07E3BE1676301000A83A0C /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = DB07E3B41676301000A83A0C /* makefile */; };
+		DB07E3BF1676301000A83A0C /* read.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB07E3B61676301000A83A0C /* read.cpp */; };
+		DB07E3C01676301000A83A0C /* run_traversal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB07E3B91676301000A83A0C /* run_traversal.cpp */; };
+		DB07E3C11676301000A83A0C /* sets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB07E3BA1676301000A83A0C /* sets.cpp */; };
+		DB07E3C21676301000A83A0C /* traversal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB07E3BC1676301000A83A0C /* traversal.cpp */; };
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
 		DB3F18241636D73200ECB00B /* evolve_sa.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18181636D73200ECB00B /* evolve_sa.cc */; };
 		DB3F18251636D73200ECB00B /* evolve.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181A1636D73200ECB00B /* evolve.cc */; };
 		DB3F18261636D73200ECB00B /* gml.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181C1636D73200ECB00B /* gml.cc */; };
 		DB3F18271636D73200ECB00B /* simulate.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181F1636D73200ECB00B /* simulate.cc */; };
 		DB3F18281636D73200ECB00B /* system.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18211636D73200ECB00B /* system.cc */; };
-		DBEBCC55163737AC00128517 /* Process_Trade_NodeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +34,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DB07E3B31676301000A83A0C /* edges_example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = edges_example.txt; sourceTree = "<group>"; };
+		DB07E3B41676301000A83A0C /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		DB07E3B51676301000A83A0C /* nodes_example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nodes_example.txt; sourceTree = "<group>"; };
+		DB07E3B61676301000A83A0C /* read.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read.cpp; sourceTree = "<group>"; };
+		DB07E3B71676301000A83A0C /* read.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = read.h; sourceTree = "<group>"; };
+		DB07E3B81676301000A83A0C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		DB07E3B91676301000A83A0C /* run_traversal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = run_traversal.cpp; sourceTree = "<group>"; };
+		DB07E3BA1676301000A83A0C /* sets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sets.cpp; sourceTree = "<group>"; };
+		DB07E3BB1676301000A83A0C /* sets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sets.h; sourceTree = "<group>"; };
+		DB07E3BC1676301000A83A0C /* traversal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = traversal.cpp; sourceTree = "<group>"; };
+		DB07E3BD1676301000A83A0C /* traversal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = traversal.h; sourceTree = "<group>"; };
 		DB3F18061636D6E100ECB00B /* DynamicNetSim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DynamicNetSim; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DynamicNetSim.1; sourceTree = "<group>"; };
 		DB3F18131636D70300ECB00B /* AnonymizePigData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnonymizePigData.cpp; sourceTree = "<group>"; };
@@ -62,9 +77,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB07E3B116762D1F00A83A0C /* MarioK Code */ = {
+			isa = PBXGroup;
+			children = (
+				DB07E3B31676301000A83A0C /* edges_example.txt */,
+				DB07E3B41676301000A83A0C /* makefile */,
+				DB07E3B51676301000A83A0C /* nodes_example.txt */,
+				DB07E3B61676301000A83A0C /* read.cpp */,
+				DB07E3B71676301000A83A0C /* read.h */,
+				DB07E3B81676301000A83A0C /* README.md */,
+				DB07E3B91676301000A83A0C /* run_traversal.cpp */,
+				DB07E3BA1676301000A83A0C /* sets.cpp */,
+				DB07E3BB1676301000A83A0C /* sets.h */,
+				DB07E3BC1676301000A83A0C /* traversal.cpp */,
+				DB07E3BD1676301000A83A0C /* traversal.h */,
+			);
+			name = "MarioK Code";
+			sourceTree = "<group>";
+		};
 		DB3F17FB1636D6E100ECB00B = {
 			isa = PBXGroup;
 			children = (
+				DB07E3B116762D1F00A83A0C /* MarioK Code */,
 				DBEBCC561637399200128517 /* data */,
 				DBEBCC511637379600128517 /* Processing */,
 				DB3F18171636D72800ECB00B /* netevo */,
@@ -183,7 +217,11 @@
 				DB3F18261636D73200ECB00B /* gml.cc in Sources */,
 				DB3F18271636D73200ECB00B /* simulate.cc in Sources */,
 				DB3F18281636D73200ECB00B /* system.cc in Sources */,
-				DBEBCC55163737AC00128517 /* Process_Trade_NodeData.cpp in Sources */,
+				DB07E3BE1676301000A83A0C /* makefile in Sources */,
+				DB07E3BF1676301000A83A0C /* read.cpp in Sources */,
+				DB07E3C01676301000A83A0C /* run_traversal.cpp in Sources */,
+				DB07E3C11676301000A83A0C /* sets.cpp in Sources */,
+				DB07E3C21676301000A83A0C /* traversal.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,6 +33,8 @@
  * This algorithm assumes node recoverey to happen before the day starts, i.e. before the traversal
  */
 
+#include <lemon/time_measure.h>
+
 #include <fstream>
 #include "read.h"
 #include "traversal.h"
@@ -42,6 +44,8 @@ using namespace std;
 
 int main()
 {
+    lemon::Timer  T(true);
+    
   const int INFECTIOUS_PERIOD = 5;
   const int INDEXDAY = 102;
   const char* OUTPUT_FILENAME = "cTraversal_result.txt";
@@ -52,6 +56,8 @@ int main()
   DAY_EDGES edges = read_edges(EDGE_FILENAME);
   NODE_SET index_nodes = read_nodes(NODE_FILENAME);
   
+
+    
   ofstream file;
   file.open (OUTPUT_FILENAME);
   
@@ -64,5 +70,8 @@ int main()
   }
   
   file.close();
+    
+    cout << "time: " << T.realTime() << endl;
+    
   return 0;
 }

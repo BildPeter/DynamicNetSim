@@ -22,25 +22,26 @@
 using namespace std;
 using namespace lemon;
 
+typedef pair< unsigned int, unsigned int > arcIDpair;
+
 int main( void ){
 
     Timer   T(true);
     // INPUT
     SmartDigraph                    mGraph;
     SmartDigraph::NodeMap<int>      mOrigID( mGraph );
-    SmartDigraph::ArcMap<int>       mFrom( mGraph );
-    SmartDigraph::ArcMap< int >     mTo(mGraph );
-    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/Pork_tempEdgeList.txt";
-    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/Pork_Data";
+    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf - TransportDaten.txt";
+    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_";
     
     set< unsigned int >                                                         mUniqueNodes;   //temporär
-    set< pair <unsigned int, unsigned int > >                                   mUniqueArcs;    //temporär
+    set< arcIDpair >                                                            mUniqueArcs;    //temporär
     set< unsigned int >                                                         mUniqueDays;
-    map< pair< unsigned int, unsigned int>, SmartDigraph::Arc >                 mOrigPair_ToArc;
+    map< arcIDpair, SmartDigraph::Arc >                                         mOrigPair_ToArc;
     unordered_map< unsigned int, SmartDigraph::Node >                           mOrigID_ToNode;
-    unordered_map< unsigned int, vector< pair< unsigned int, unsigned int > > > mTime_ToPair_Vec;   //temporär
+    unordered_map< unsigned int, vector< arcIDpair > >                          mTime_ToPair_Vec;   //temporär
+    unordered_map< unsigned int, map <arcIDpair, int > >                        mTime_ToPair_Amount_Vec;   //temporär
     unordered_map< unsigned int, vector< SmartDigraph::Arc > >                  mTime_toArc_Vec;
-    
+    unordered_map< unsigned int, vector< pair<SmartDigraph::Arc, int > > >      mTime_toArc_Amount_Vec;
 /*
     // --- Daten Anordnung ---
     // From	To	Amount	Date
@@ -73,6 +74,7 @@ int main( void ){
         tmpPair = make_pair( from, to );
         mUniqueArcs.insert( tmpPair );
         mTime_ToPair_Vec[ day ].push_back( tmpPair );
+        mTime_ToPair_Amount_Vec[ day ].insert( make_pair( tmpPair, amount ) );
     }
     cout << "Unique - \t Nodes " << mUniqueNodes.size() << " Arcs: " << mUniqueArcs.size() << endl;;
 
@@ -111,12 +113,10 @@ int main( void ){
     for ( auto time : mUniqueDays ){
         for ( auto mPair : mTime_ToPair_Vec[ time ] ){
             mTime_toArc_Vec[ time ].push_back( mOrigPair_ToArc[ mPair ] );
+            mTime_toArc_Amount_Vec[ time ].push_back( make_pair(
+                                                                mOrigPair_ToArc[ mPair ],
+                                                                (mTime_ToPair_Amount_Vec[ time ])[ mPair ] ) );
         }
-    }
-    
-    for (auto mPair : mUniqueArcs ){
-        mFrom[ mOrigPair_ToArc[ mPair ] ] = mPair.first;
-        mTo[ mOrigPair_ToArc[ mPair ] ]     = mPair.second;
     }
     
     cout << "build time: " << T.realTime() << endl;
@@ -130,8 +130,6 @@ int main( void ){
     
     digraphWriter( mGraph, outputNAME + ".lgf")
     .nodeMap("origID", mOrigID )
-    .arcMap("origFrom", mFrom)
-    .arcMap("origTo", mTo)
     .run();
     
     ofstream    outFile( outputNAME + "_time_tmpArcIDs.txt" );
@@ -145,8 +143,21 @@ int main( void ){
         outFile << endl;
     }
     outFile.close();
+
+    outFile.open( outputNAME + "_time_tmpArcIDs_amountOnArc.txt" );
+    outFile << "time" << "\t" << "arcIDs_amount" << endl;
     
-    outFile.open( outputNAME + "_time_amountOfArcs.txt" );
+    for ( auto time : mUniqueDays){
+        outFile << time << "\t";
+        for ( auto pair : mTime_toArc_Amount_Vec[time] ){
+            outFile << mGraph.id( pair.first ) << " " << pair.second << "\t";
+        }
+        outFile << endl;
+    }
+    outFile.close();
+
+    
+    outFile.open( outputNAME + "_time_countArcs.txt" );
     outFile << "time" << "\t" << "amountOfArcs" << endl;
     for ( auto time : mUniqueDays){
         outFile << time << "\t";

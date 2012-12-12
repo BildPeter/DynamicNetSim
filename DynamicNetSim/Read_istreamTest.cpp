@@ -6,4 +6,57 @@
 //  Copyright (c) 2012 Peter. All rights reserved.
 //
 
-#include "Read_istreamTest.h"
+/*
+                PROBLEM:
+    Ich weiss nicht, wie ich das END OF LINE detektiere, um meine Daten einzulesen. Brauch die Zuweisung des ersten Elements (time)
+    Mit GetLine würde es gehen, aber es liest in einen char -> d.h. ich muss die Größe vorher festlegen char [256]. Da könnte ich zu wenig Platz freigeben.
+ 
+    --- GELÖST
+    ABER MIT STRINGS :-S
+ */
+
+
+
+#include <fstream>
+#include <iostream>
+#include <sstream>
+
+using namespace std;
+
+int main(){
+
+    ifstream    mFile( "/Users/sonneundasche/Programmierung/Extern/DynamicNetSim/DynamicNetSim/Test_forPairReading.txt" );
+    
+    int in;
+    
+//    while (mFile ) {
+////        cout << mFile;
+//        mFile >> in;
+//        cout <<  in << " - ";
+//    }
+    
+
+    ifstream input( "/Users/sonneundasche/Programmierung/Extern/DynamicNetSim/DynamicNetSim/Test_forPairReading.txt" );
+    char const row_delim = '\n';
+    char const field_delim = '\t';
+    for (string row; getline(input, row, row_delim); ) {
+        istringstream ss(row);
+
+        string pairs;
+        // -- read first line
+        getline(ss, pairs, field_delim);
+        cout << pairs << "\t";
+        
+        for (; getline(ss, pairs, field_delim); ) {
+            
+            string  value;
+            istringstream ss(pairs);
+            getline(ss, value, ' ');
+            cout << value << "+";
+            getline(ss, value, ' ');
+            cout << value << "\t";
+
+        }
+        cout << endl;
+    }
+}

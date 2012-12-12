@@ -7,13 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB3323421678C063007A1BCD /* Read_tempGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB3323401678C063007A1BCD /* Read_tempGraph.cpp */; };
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DB3F18241636D73200ECB00B /* evolve_sa.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18181636D73200ECB00B /* evolve_sa.cc */; };
-		DB3F18251636D73200ECB00B /* evolve.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181A1636D73200ECB00B /* evolve.cc */; };
-		DB3F18261636D73200ECB00B /* gml.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181C1636D73200ECB00B /* gml.cc */; };
-		DB3F18271636D73200ECB00B /* simulate.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181F1636D73200ECB00B /* simulate.cc */; };
-		DB3F18281636D73200ECB00B /* system.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18211636D73200ECB00B /* system.cc */; };
-		DBEBCC55163737AC00128517 /* Process_Trade_NodeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DB3323401678C063007A1BCD /* Read_tempGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_tempGraph.cpp; sourceTree = "<group>"; };
 		DB3F18061636D6E100ECB00B /* DynamicNetSim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DynamicNetSim; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DynamicNetSim.1; sourceTree = "<group>"; };
 		DB3F18131636D70300ECB00B /* AnonymizePigData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnonymizePigData.cpp; sourceTree = "<group>"; };
@@ -87,6 +83,7 @@
 				DB3F18131636D70300ECB00B /* AnonymizePigData.cpp */,
 				DB3F18141636D70300ECB00B /* TemporalActiveArcs.cpp */,
 				DB3F18151636D70300ECB00B /* TemporalActiveArcsFULL.cpp */,
+				DB3323401678C063007A1BCD /* Read_tempGraph.cpp */,
 				DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */,
 			);
 			path = DynamicNetSim;
@@ -178,12 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB3F18241636D73200ECB00B /* evolve_sa.cc in Sources */,
-				DB3F18251636D73200ECB00B /* evolve.cc in Sources */,
-				DB3F18261636D73200ECB00B /* gml.cc in Sources */,
-				DB3F18271636D73200ECB00B /* simulate.cc in Sources */,
-				DB3F18281636D73200ECB00B /* system.cc in Sources */,
-				DBEBCC55163737AC00128517 /* Process_Trade_NodeData.cpp in Sources */,
+				DB3323421678C063007A1BCD /* Read_tempGraph.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +193,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -238,7 +230,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

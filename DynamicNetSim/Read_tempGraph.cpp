@@ -9,6 +9,7 @@
 
 #include <lemon/smart_graph.h>
 #include <lemon/lgf_writer.h>
+#include <lemon/time_measure.h>
 
 #include <set>
 #include <map>
@@ -23,13 +24,14 @@ using namespace lemon;
 
 int main( void ){
 
+    Timer   T(true);
     // INPUT
     SmartDigraph                    mGraph;
     SmartDigraph::NodeMap<int>      mOrigID( mGraph );
     SmartDigraph::ArcMap<int>       mFrom( mGraph );
     SmartDigraph::ArcMap< int >     mTo(mGraph );
-    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf - TransportDaten.txt";
-    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/SheepData";
+    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/Pork_tempEdgeList.txt";
+    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/Pork_Data";
     
     set< unsigned int >                                                         mUniqueNodes;   //temporär
     set< pair <unsigned int, unsigned int > >                                   mUniqueArcs;    //temporär
@@ -117,6 +119,10 @@ int main( void ){
         mTo[ mOrigPair_ToArc[ mPair ] ]     = mPair.second;
     }
     
+    cout << "build time: " << T.realTime() << endl;
+    cout << "LEMON - \t Nodes " << countNodes( mGraph ) << " - Arcs: " << countArcs( mGraph ) << endl;
+    cout << "HASH - \t\t Nodes " << mOrigID_ToNode.size() << " - Arcs: " << mOrigPair_ToArc.size() << endl;
+    
     
     // ======================================
     // ========= WRITE TO FILES       =======
@@ -149,8 +155,6 @@ int main( void ){
     outFile.close();
     
     
-    cout << "LEMON - \t Nodes " << countNodes( mGraph ) << " - Arcs: " << countArcs( mGraph ) << endl;
-    cout << "HASH - \t\t Nodes " << mOrigID_ToNode.size() << " - Arcs: " << mOrigPair_ToArc.size() << endl;
 
 //    delete mUniqueArcs;
 //    delete mUniqueNodes;

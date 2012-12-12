@@ -16,15 +16,19 @@
  */
 
 
-
+#include <vector>
 #include <fstream>
 #include <iostream>
 #include <sstream>
+
+#include <unordered_map>
 
 using namespace std;
 
 int main(){
 
+    unordered_map< int, vector<int> >   myMap;
+    
     ifstream    mFile( "/Users/sonneundasche/Programmierung/Extern/DynamicNetSim/DynamicNetSim/Test_forPairReading.txt" );
     
     int in;
@@ -35,7 +39,7 @@ int main(){
 //        cout <<  in << " - ";
 //    }
     
-
+/*
     ifstream input( "/Users/sonneundasche/Programmierung/Extern/DynamicNetSim/DynamicNetSim/Test_forPairReading.txt" );
     char const row_delim = '\n';
     char const field_delim = '\t';
@@ -59,4 +63,23 @@ int main(){
         }
         cout << endl;
     }
+ */
+    
+    ifstream input( "/Users/sonneundasche/Programmierung/Extern/DynamicNetSim/DynamicNetSim/Test_forTABReading" );
+    
+    for (string line; getline(input, line, '\n'); ) {
+        istringstream lineStream(line);
+        int     timeInt;
+        string tmpData;
+        // -- read first number
+        lineStream >> timeInt;
+        cout << timeInt;
+        for (; getline(lineStream, tmpData, '\t'); ) {
+            lineStream >> timeInt;
+            cout << "\t" << timeInt;
+        }
+        cout << endl;
+    }
+    
+    
 }

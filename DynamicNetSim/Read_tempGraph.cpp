@@ -30,8 +30,8 @@ int main( void ){
     // INPUT
     SmartDigraph                    mGraph;
     SmartDigraph::NodeMap<int>      mOrigID( mGraph );
-    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf - TransportDaten.txt";
-    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_";
+    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/Pork_tempEdgeList.txt";
+    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_";
     
     set< unsigned int >                                                         mUniqueNodes;   //temporär
     set< arcIDpair >                                                            mUniqueArcs;    //temporär

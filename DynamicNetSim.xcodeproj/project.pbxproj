@@ -30,6 +30,7 @@
 		DB3323471678F5CB007A1BCD /* Test_forPairReading.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test_forPairReading.txt; sourceTree = "<group>"; };
 		DB332349167909E2007A1BCD /* Read_NewFileFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_NewFileFormat.cpp; sourceTree = "<group>"; };
 		DB33234C16790B89007A1BCD /* Test_forTABReading */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test_forTABReading; sourceTree = "<group>"; };
+		DB33234F167A42E9007A1BCD /* temporal_graph_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = temporal_graph_handler.h; sourceTree = SOURCE_ROOT; };
 		DB3F18061636D6E100ECB00B /* DynamicNetSim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DynamicNetSim; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DynamicNetSim.1; sourceTree = "<group>"; };
 		DB3F18131636D70300ECB00B /* AnonymizePigData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnonymizePigData.cpp; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 				DB3F18141636D70300ECB00B /* TemporalActiveArcs.cpp */,
 				DB3F18151636D70300ECB00B /* TemporalActiveArcsFULL.cpp */,
 				DB3323401678C063007A1BCD /* Read_tempGraph.cpp */,
+				DB33234F167A42E9007A1BCD /* temporal_graph_handler.h */,
 				DB332349167909E2007A1BCD /* Read_NewFileFormat.cpp */,
 				DB3323441678F579007A1BCD /* Read_istreamTest.cpp */,
 				DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */,

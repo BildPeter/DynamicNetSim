@@ -9,7 +9,6 @@
 #include <unistd.h>
 
 #include <lemon/smart_graph.h>
-#include <lemon/static_graph.h>
 #include <lemon/lgf_reader.h>
 #include <lemon/lgf_writer.h>
 #include <lemon/time_measure.h>
@@ -21,40 +20,25 @@
 using namespace std;
 using namespace lemon;
 
+template < typename DGR >
+vector<int> readTemporalArcList( DGR &graph, unordered_map< int, vector<typename DGR::Arc > > &Time_ToArcVec, string fn);
+
 int main(){
+    
+    string  schweinLGF      = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_.lgf";
+    string  schweinDynArcs  = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW__time_tmpArcIDs.txt" ;
+    string  schaf           = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt";
 
     vector< int >                                            activeTimes;
     unordered_map< int, vector< SmartDigraph::Arc > >        mTime_Arcs_Vec;
-    StaticDigraph                       mStatGraph;
     SmartDigraph                        mGraph;
-    SmartDigraph::ArcMap<int>           arcCount( mGraph );
-    SmartDigraph::NodeMap<int>          nodeCount( mGraph );
 
     Timer T(true);
-    digraphReader( mGraph, "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_.lgf" )
+    digraphReader( mGraph, schweinLGF)
     .run();
-    ifstream input( "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW__time_tmpArcIDs.txt" );
-    
-    
-//    digraphReader( mGraph, "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_.lgf" )
-//    .run();
-//    ifstream input( "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt" );
 
-    int     time, arcID;
-    string tmpData;
-    getline( input, tmpData );  // Kill first line (header)
-    for (string line; getline(input, line, '\n'); ) {
-        istringstream lineStream(line);
-        lineStream >> time;     // -- read first number ---
-        activeTimes.push_back( time );
-        
-        for (; getline(lineStream, tmpData, '\t'); ) {
-            lineStream >> arcID;
-            mTime_Arcs_Vec[ time ].push_back( mGraph.arcFromId( arcID ) );
-        }
-        mTime_Arcs_Vec[time].pop_back();    // -- do not really know why, seems to read last element twice (not endet be \t)
-    }
-
+    activeTimes = readTemporalArcList<SmartDigraph>( mGraph, mTime_Arcs_Vec, schweinDynArcs);
+    
     cout << "read Time: " << T.realTime() << endl;
     cout << "nodes: " << countNodes( mGraph ) << " Arcs: " << countArcs( mGraph ) << endl;
     
@@ -64,6 +48,9 @@ int main(){
     SmartDigraph::NodeMap<bool>             activeNodes(mGraph, false);
     SmartDigraph::ArcMap<bool>              activeArcs(mGraph, false);
     SubDigraph<SmartDigraph>                subSystem(mGraph, activeNodes, activeArcs);
+    SmartDigraph::ArcMap<int>               arcCount( mGraph );
+    SmartDigraph::NodeMap<int>              nodeCount( mGraph );
+
     int calSteps = 0;
     
     T.restart();
@@ -88,19 +75,19 @@ int main(){
         }
     }
     
-//    for (SmartDigraph::NodeIt n(mGraph); n!=INVALID; ++n) {
-//        for (SmartDigraph::NodeIt n(mGraph); n!=INVALID; ++n)
-//            nodeCount[ n ]++;
-//    }
-    
     cout << "calculation Time: " << T.realTime() << endl;
     cout << "calculation Steps: " << calSteps << endl;
     cout << nodeCount[ mGraph.nodeFromId( 2 ) ] << endl;
     cout << endl << "pause" << endl;
 //    usleep(10000000);
     
+    InDegMap<SmartDigraph>      mInDegree(mGraph);
+    OutDegMap<SmartDigraph>     mOutDegree(mGraph);
+    
     digraphWriter( mGraph, "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/pork_Activations.txt")
     .nodeMap("Activations", nodeCount)
+    .nodeMap("InDegree", mInDegree)
+    .nodeMap("OutDegree", mOutDegree)
     .skipArcs()
     .run();
     
@@ -110,29 +97,32 @@ int main(){
      */
     mapFill(mGraph, activeArcs, true);
     for (SmartDigraph::NodeIt n(mGraph); n!=INVALID; ++n) {
-        if (nodeCount[n] > 14 )
+        if (nodeCount[n] > 32 )
             activeNodes[n]  = true;
     }
     
     cout << "subGraph - nodes: " << countNodes( subSystem ) << " | arcs: " << countArcs( subSystem ) << endl;
-    
-    digraphCopy(subSystem, mStatGraph);
-    
-    digraphWriter( mStatGraph, "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/pork_14Active_Graph.txt")
-//    .nodeMap("Activations", nodeCount)
-    .run();
-    
-    
-    
-//    for( int time : activeTimes ){
-//        cout << time << " ";
-//        for( auto arcs : mTime_Arcs_Vec[ time ] ){
-//            cout << mGraph.id(arcs) << " ";
-//        }
-//        cout << endl;
-//    }
-//    for( auto arcs : mTime_Arcs_Vec[ 2555 ] ){
-//        cout << mGraph.id(arcs) << " ";
-//    }
+ }
 
+
+template < typename DGR >
+vector<int> readTemporalArcList( DGR &graph, unordered_map< int, vector<typename DGR::Arc > > &Time_ToArcVec, string fn){
+    vector< int > activeTimes;
+    ifstream input( fn );
+    
+    int     time, arcID;
+    string tmpData;
+    getline( input, tmpData );  // Kill first line (header)
+    for (string line; getline(input, line, '\n'); ) {
+        istringstream lineStream(line);
+        lineStream >> time;     // -- read first number ---
+        activeTimes.push_back( time );
+        
+        for (; getline(lineStream, tmpData, '\t'); ) {
+            lineStream >> arcID;
+            Time_ToArcVec[ time ].push_back( graph.arcFromId( arcID ) );
+        }
+        Time_ToArcVec[time].pop_back();    // -- do not really know why, seems to read last element twice (not endet be \t)
+    }
+    return activeTimes;
 }

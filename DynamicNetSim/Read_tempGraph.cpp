@@ -11,6 +11,8 @@
 #include <lemon/lgf_writer.h>
 #include <lemon/time_measure.h>
 
+#include <peter/temporal_graph_handler.h>
+
 #include <set>
 #include <map>
 #include <unordered_map>
@@ -31,7 +33,7 @@ int main( void ){
     SmartDigraph                    mGraph;
     SmartDigraph::NodeMap<int>      mOrigID( mGraph );
     string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/Pork_tempEdgeList.txt";
-    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_";
+    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_xx";
     
     set< unsigned int >                                                         mUniqueNodes;   //temporär
     set< arcIDpair >                                                            mUniqueArcs;    //temporär

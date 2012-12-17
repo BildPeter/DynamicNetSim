@@ -17,7 +17,7 @@
 #include <unordered_map>
 #include <fstream>
 
-#include "temporal_graph_handler.h"
+#include <peter/temporal_graph_handler.h>
 
 using namespace std;
 using namespace lemon;

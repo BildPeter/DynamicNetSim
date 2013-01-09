@@ -8,7 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DBC4A732167F463C00FE236E /* Read_tempGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB3323401678C063007A1BCD /* Read_tempGraph.cpp */; };
+		DBE989BA169DD88F001C7675 /* Performance_DynGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */; };
+		DBE989BB169DD934001C7675 /* evolve_sa.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18181636D73200ECB00B /* evolve_sa.cc */; };
+		DBE989BC169DD936001C7675 /* evolve.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181A1636D73200ECB00B /* evolve.cc */; };
+		DBE989BD169DD939001C7675 /* gml.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181C1636D73200ECB00B /* gml.cc */; };
+		DBE989BE169DD93D001C7675 /* simulate.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181F1636D73200ECB00B /* simulate.cc */; };
+		DBE989BF169DD93F001C7675 /* system.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18211636D73200ECB00B /* system.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +53,8 @@
 		DB3F18221636D73200ECB00B /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = system.h; path = ../../../Development/Library/include/netevo/system.h; sourceTree = "<group>"; };
 		DB3F18231636D73200ECB00B /* visualise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = visualise.h; path = ../../../Development/Library/include/netevo/visualise.h; sourceTree = "<group>"; };
 		DBC4A731167F462A00FE236E /* temporal_graph_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = temporal_graph_handler.h; path = ../../../Development/Library/include/peter/temporal_graph_handler.h; sourceTree = "<group>"; };
+		DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Performance_DynGraph.cpp; sourceTree = "<group>"; };
+		DBE989B9169DD88F001C7675 /* Performance_DynGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance_DynGraph.h; sourceTree = "<group>"; };
 		DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Process_Trade_NodeData.cpp; path = DynamicNetSim/Process_Trade_NodeData.cpp; sourceTree = "<group>"; };
 		DBEBCC54163737AC00128517 /* Process_Trade_NodeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Process_Trade_NodeData.h; path = DynamicNetSim/Process_Trade_NodeData.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,10 +73,11 @@
 		DB3F17FB1636D6E100ECB00B = {
 			isa = PBXGroup;
 			children = (
+				DBE989B4169DD2BD001C7675 /* Performance */,
 				DBC4A731167F462A00FE236E /* temporal_graph_handler.h */,
+				DB3F18171636D72800ECB00B /* netevo */,
 				DBEBCC561637399200128517 /* data */,
 				DBEBCC511637379600128517 /* Processing */,
-				DB3F18171636D72800ECB00B /* netevo */,
 				DB3F18091636D6E100ECB00B /* DynamicNetSim */,
 				DB3F18071636D6E100ECB00B /* Products */,
 			);
@@ -116,6 +124,15 @@
 				DB3F18231636D73200ECB00B /* visualise.h */,
 			);
 			name = netevo;
+			sourceTree = "<group>";
+		};
+		DBE989B4169DD2BD001C7675 /* Performance */ = {
+			isa = PBXGroup;
+			children = (
+				DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */,
+				DBE989B9169DD88F001C7675 /* Performance_DynGraph.h */,
+			);
+			name = Performance;
 			sourceTree = "<group>";
 		};
 		DBEBCC511637379600128517 /* Processing */ = {
@@ -185,7 +202,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBC4A732167F463C00FE236E /* Read_tempGraph.cpp in Sources */,
+				DBE989BA169DD88F001C7675 /* Performance_DynGraph.cpp in Sources */,
+				DBE989BB169DD934001C7675 /* evolve_sa.cc in Sources */,
+				DBE989BC169DD936001C7675 /* evolve.cc in Sources */,
+				DBE989BD169DD939001C7675 /* gml.cc in Sources */,
+				DBE989BE169DD93D001C7675 /* simulate.cc in Sources */,
+				DBE989BF169DD93F001C7675 /* system.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,9 +218,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -232,9 +254,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

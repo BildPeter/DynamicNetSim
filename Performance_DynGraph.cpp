@@ -25,20 +25,28 @@ using namespace netevo;
 
 int main(){
     
-    string  schweinLGF      = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_.lgf";
-    string  schweinDynArcs  = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW__time_tmpArcIDs.txt" ;
-    string  schaf           = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt";
+//    string  schweinLGF      = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_.lgf";
+//    string  schweinDynArcs  = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW__time_tmpArcIDs.txt" ;
+    string  schaf           = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_.lgf";
+    string  schafDynAcrs    = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt";
     
-    vector< int >                                                     activeTimes;
+    vector< int >                                             activeTimes;
     boost::unordered_map< int, vector< System::Arc > >        mTime_Arcs_Vec;
-    netevo::System                      mSysDyn, mSysMap;
-    
+    System                      mSysDyn, mSysMap;
+    System::NodeMap<bool>             activeNodes( mSysDyn, false);
+    System::ArcMap<bool>              activeArcs(  mSysDyn, false);
     Timer T(true);
-    // --- read the LEMON graph
-    digraphReader( mSysDyn, schweinLGF)
-    .run();
-    digraphReader( mSysMap, schweinLGF)
-    .run();
+    
+    cout << "Start" << endl;
+    //---------------------------------------------------------------------------------
+    //                      SETUP THE SYSTEM
+    //---------------------------------------------------------------------------------
+    // --- read the graphs
+        digraphReader( mSysDyn, schaf)
+        .run();
+        digraphReader( mSysMap, schaf)
+        .run();
+
     
     // -- Assign the ODE dynamics
     SIRdynamic  mDyn( 0.6, 0.7);
@@ -46,19 +54,30 @@ int main(){
     mSysDyn.setNodeDynamic_all( "SIRdynamic" );
     
     // --- Assign the map function
+    ActiveArcsInteractionMap   mInterAct( activeArcs );
+    mSysMap.addNodeDynamic( &mInterAct );
+    mSysMap.setNodeDynamic_all( "InteractionMap" );
     
+    // --- Observer
+    SimObserverToStream coutObserver(cout);
+    SimObserver         nullObserver;
+    ChangeLog           nullLogger;
     
-    // --- read
-    activeTimes = tempGR::readTemporalArcList<netevo::System>( mSysDyn, mTime_Arcs_Vec, schweinDynArcs);
+    // --- Simulators
+    SimulateMap         simMap;
+    SimulateOdeFixed    simODE( RK_4, 0.01 );
+    State initial = State( mSysDyn.totalStates(), 0.1) ;
+    for ( double &x : initial ) { x = 1; }
+
+    // --- read the active arcs and time
+    activeTimes = tempGR::readTemporalArcList<netevo::System>( mSysDyn, mTime_Arcs_Vec, schafDynAcrs);
+    
     
     cout << "read Time: " << T.realTime() << endl;
     cout << "nodes: " << countNodes( mSysDyn ) << " Arcs: " << countArcs( mSysDyn ) << endl;
     
-    
     //==================================================================================
     //==================================================================================
-    System::NodeMap<bool>             activeNodes( mSysDyn, false);
-    System::ArcMap<bool>              activeArcs(  mSysDyn, false);
     
     tempGR::temporalGraphActivator<netevo::System>        mActivator( mSysDyn, activeNodes, activeArcs, mTime_Arcs_Vec );
     
@@ -71,9 +90,9 @@ int main(){
         mActivator.activate( currentTime );
         
         mActivator.deactivate( currentTime );
+        calSteps++;
     }
     
     cout << "calculation Time: " << T.realTime() << endl;
     cout << "calculation Steps: " << calSteps << endl;
-    cout << endl << "pause" << endl;
 }

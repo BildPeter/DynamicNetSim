@@ -56,7 +56,6 @@
 		DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Performance_DynGraph.cpp; sourceTree = "<group>"; };
 		DBE989B9169DD88F001C7675 /* Performance_DynGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance_DynGraph.h; sourceTree = "<group>"; };
 		DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Process_Trade_NodeData.cpp; path = DynamicNetSim/Process_Trade_NodeData.cpp; sourceTree = "<group>"; };
-		DBEBCC54163737AC00128517 /* Process_Trade_NodeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Process_Trade_NodeData.h; path = DynamicNetSim/Process_Trade_NodeData.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */,
-				DBEBCC54163737AC00128517 /* Process_Trade_NodeData.h */,
 			);
 			name = Processing;
 			sourceTree = "<group>";

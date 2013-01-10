@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB000504169F57B00015CBEF /* Performance_DynGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */; };
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DBE989BA169DD88F001C7675 /* Performance_DynGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */; };
 		DBE989BB169DD934001C7675 /* evolve_sa.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18181636D73200ECB00B /* evolve_sa.cc */; };
 		DBE989BC169DD936001C7675 /* evolve.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181A1636D73200ECB00B /* evolve.cc */; };
 		DBE989BD169DD939001C7675 /* gml.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181C1636D73200ECB00B /* gml.cc */; };
@@ -200,12 +200,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE989BA169DD88F001C7675 /* Performance_DynGraph.cpp in Sources */,
 				DBE989BB169DD934001C7675 /* evolve_sa.cc in Sources */,
 				DBE989BC169DD936001C7675 /* evolve.cc in Sources */,
 				DBE989BD169DD939001C7675 /* gml.cc in Sources */,
 				DBE989BE169DD93D001C7675 /* simulate.cc in Sources */,
 				DBE989BF169DD93F001C7675 /* system.cc in Sources */,
+				DB000504169F57B00015CBEF /* Performance_DynGraph.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

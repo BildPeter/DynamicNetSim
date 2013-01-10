@@ -8,7 +8,7 @@
 
 // C++
 #include <iostream>
-#include <unordered_set>
+//#include <unordered_set>
 #include <utility>
 #include <algorithm>
 #include <vector>
@@ -188,16 +188,17 @@ int main( void ){
 
     Timer t;
     
-    string edgeListSource   = "/Users/sonneundasche/Desktop/SchweinBetriebsGröße/TradingData.txt";
-    string lemonFileTmp     = "/Users/sonneundasche/Desktop/SchweinBetriebsGröße/PorkTMP_2.lgf";
-    string lemonFileOut     = "/Users/sonneundasche/Desktop/SchweinBetriebsGröße/porkProcessed_2.lgf";
+//    string edgeListSource   = "/Users/sonneundasche/Desktop/SchweinBetriebsGröße/TradingData.txt";
+    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf - TransportDaten.txt";
+    string lemonFileTmp     = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/TMP_2.lgf";
+    string lemonFileOut     = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/sheepProcessed_2.lgf";
     
     boost::unordered_set< unsigned int >                        uniqueNodes; // Mathematische Menge (set) der Knoten
     boost::unordered_set< pair< unsigned int, unsigned int > >  uniqueArcs;  // Menge der Kanten (set von Knoten-Paaren)
 //    vector< unsigned int >      vecAmount;
 //    vector< unsigned int >      vecDay;
     
-    ifstream    myEdgeListFile( edgeListSource );
+    ifstream    myEdgeListFile( edgeListSource.c_str() );
     string      foo;  // kill first line, because it has the header
     getline(myEdgeListFile, foo);    
     
@@ -221,7 +222,7 @@ int main( void ){
     // Schreiben der LFG durch eigene Routine
     // ----------------------------------------------------------------------------------------
     
-    ofstream myLemonFile( lemonFileTmp );
+    ofstream myLemonFile( lemonFileTmp.c_str() );
     
     // ----- Nodes -----
     myLemonFile << "@nodes" << endl;
@@ -288,7 +289,7 @@ int main( void ){
      */
 
     myEdgeListFile.close();
-    myEdgeListFile.open( edgeListSource );
+    myEdgeListFile.open( edgeListSource.c_str() );
     getline(myEdgeListFile, foo);    
     
     // Einlesen der Werte in die Menge. Paar-Erstellung.

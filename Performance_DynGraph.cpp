@@ -65,7 +65,7 @@ int main(){
     
     // --- Simulators
     SimulateMap         simMap;
-    SimulateOdeFixed    simODE( RK_4, 0.01 );
+    SimulateOdeFixed    simODE( RK_4, 0.1 );
     State initial = State( mSysDyn.totalStates(), 0.1) ;
     for ( double &x : initial ) { x = 1; }
 
@@ -86,10 +86,17 @@ int main(){
     T.restart();
     
     for ( auto currentTime : activeTimes) {
+
+
+        if ( calSteps > 1000 ) continue;
         
         mActivator.activate( currentTime );
         
+        simODE.simulate( mSysDyn, 1, initial, nullObserver, nullLogger);
+        simMap.simulate( mSysMap, 1, initial, nullObserver, nullLogger);
+        
         mActivator.deactivate( currentTime );
+        
         calSteps++;
     }
     

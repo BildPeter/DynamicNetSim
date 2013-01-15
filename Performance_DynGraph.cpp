@@ -25,10 +25,10 @@ using namespace netevo;
 
 int main(){
     
-//    string  schweinLGF      = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_.lgf";
-//    string  schweinDynArcs  = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW__time_tmpArcIDs.txt" ;
-    string  schaf           = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_.lgf";
-    string  schafDynAcrs    = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt";
+    string  schweinLGF      = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_.lgf";
+    string  schweinDynArcs  = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW__time_tmpArcIDs.txt" ;
+//    string  schaf           = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_.lgf";
+//    string  schafDynAcrs    = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt";
     
     vector< int >                                             activeTimes;
     boost::unordered_map< int, vector< System::Arc > >        mTime_Arcs_Vec;
@@ -42,9 +42,9 @@ int main(){
     //                      SETUP THE SYSTEM
     //---------------------------------------------------------------------------------
     // --- read the graphs
-        digraphReader( mSysDyn, schaf)
+        digraphReader( mSysDyn, schweinLGF)
         .run();
-        digraphReader( mSysMap, schaf)
+        digraphReader( mSysMap, schweinLGF)
         .run();
 
     
@@ -65,16 +65,16 @@ int main(){
     
     // --- Simulators
     SimulateMap         simMap;
-    SimulateOdeFixed    simODE( RK_4, 0.1 );
+    SimulateOdeFixed    simODE( RK_4, 0.01 );
     State initial = State( mSysDyn.totalStates(), 0.1) ;
     for ( double &x : initial ) { x = 1; }
 
     // --- read the active arcs and time
-    activeTimes = tempGR::readTemporalArcList<netevo::System>( mSysDyn, mTime_Arcs_Vec, schafDynAcrs);
-    
+    activeTimes = tempGR::readTemporalArcList<netevo::System>( mSysDyn, mTime_Arcs_Vec, schweinDynArcs);
     
     cout << "read Time: " << T.realTime() << endl;
     cout << "nodes: " << countNodes( mSysDyn ) << " Arcs: " << countArcs( mSysDyn ) << endl;
+    cout << "Days: " << mTime_Arcs_Vec.size() << endl;
     
     //==================================================================================
     //==================================================================================
@@ -83,12 +83,14 @@ int main(){
     
     int calSteps = 0;
     
+    Timer localT;
     T.restart();
     
     for ( auto currentTime : activeTimes) {
+        
+        
+//        if ( calSteps > 1000 ) continue;
 
-
-        if ( calSteps > 1000 ) continue;
         
         mActivator.activate( currentTime );
         
@@ -97,6 +99,8 @@ int main(){
         
         mActivator.deactivate( currentTime );
         
+        cout << calSteps << " : " << currentTime  <<" : duration  " << localT.realTime() << endl;
+        localT.restart();
         calSteps++;
     }
     

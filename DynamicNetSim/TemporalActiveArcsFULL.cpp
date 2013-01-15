@@ -188,10 +188,13 @@ int main( void ){
 
     Timer t;
     
-//    string edgeListSource   = "/Users/sonneundasche/Desktop/SchweinBetriebsGröße/TradingData.txt";
-    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf - TransportDaten.txt";
-    string lemonFileTmp     = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/TMP_2.lgf";
-    string lemonFileOut     = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/sheepProcessed_2.lgf";
+    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/00 Original/D_sw_uvwd_cmpl.txt";
+    string lemonFileTmp     = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/TMP_2.lgf";
+    string lemonFileOut     = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkProcessed_2.lgf";
+
+//    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf - TransportDaten.txt";
+//    string lemonFileTmp     = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/TMP_2.lgf";
+//    string lemonFileOut     = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/sheepProcessed_2.lgf";
     
     boost::unordered_set< unsigned int >                        uniqueNodes; // Mathematische Menge (set) der Knoten
     boost::unordered_set< pair< unsigned int, unsigned int > >  uniqueArcs;  // Menge der Kanten (set von Knoten-Paaren)
@@ -411,11 +414,13 @@ int main( void ){
     cout << "Days to calculate: " << dayActivityArcIDs.size() << endl;
     cout << "Starte Simulation!" << endl;
     t.restart();
+    Timer   localT;
     for( int i = 0; i < dayActivityArcIDs.size() ; i++){
         setBoolMapOfDay( myItBoolMap, dayActivityArcIDs, i );
-//        cout << "Zeit: " << i << " Aktive Kanten: " << myItBoolMap.trueNum() << endl  << " ODE:" << endl;
-        simODE.simulate( odeSys, 0.11, initial, nullObserver, nullLogger);
+        simODE.simulate( odeSys, 1, initial, nullObserver, nullLogger);
         simMap.simulate( mapSys, 1, initial, nullObserver, nullLogger);
+        cout << "Zeit: " << i << " Aktive Kanten: " << myItBoolMap.trueNum() << endl  << " Dauer:" << localT.realTime() << endl;
+        localT.restart();
     } 
     cout << "Laufzeit: " << t.realTime() << endl;
 }

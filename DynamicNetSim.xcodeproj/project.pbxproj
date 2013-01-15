@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB000504169F57B00015CBEF /* Performance_DynGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */; };
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
+		DB6775CB16A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */; };
 		DBE989BB169DD934001C7675 /* evolve_sa.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18181636D73200ECB00B /* evolve_sa.cc */; };
 		DBE989BC169DD936001C7675 /* evolve.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181A1636D73200ECB00B /* evolve.cc */; };
 		DBE989BD169DD939001C7675 /* gml.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181C1636D73200ECB00B /* gml.cc */; };
@@ -52,6 +52,7 @@
 		DB3F18211636D73200ECB00B /* system.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = system.cc; path = ../../../Development/Library/include/netevo/system.cc; sourceTree = "<group>"; };
 		DB3F18221636D73200ECB00B /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = system.h; path = ../../../Development/Library/include/netevo/system.h; sourceTree = "<group>"; };
 		DB3F18231636D73200ECB00B /* visualise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = visualise.h; path = ../../../Development/Library/include/netevo/visualise.h; sourceTree = "<group>"; };
+		DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OwnFiles_ToDynEdgeList.cpp; sourceTree = "<group>"; };
 		DBC4A731167F462A00FE236E /* temporal_graph_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = temporal_graph_handler.h; path = ../../../Development/Library/include/peter/temporal_graph_handler.h; sourceTree = "<group>"; };
 		DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Performance_DynGraph.cpp; sourceTree = "<group>"; };
 		DBE989B9169DD88F001C7675 /* Performance_DynGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance_DynGraph.h; sourceTree = "<group>"; };
@@ -137,6 +138,7 @@
 		DBEBCC511637379600128517 /* Processing */ = {
 			isa = PBXGroup;
 			children = (
+				DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */,
 				DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */,
 			);
 			name = Processing;
@@ -205,7 +207,7 @@
 				DBE989BD169DD939001C7675 /* gml.cc in Sources */,
 				DBE989BE169DD93D001C7675 /* simulate.cc in Sources */,
 				DBE989BF169DD93F001C7675 /* system.cc in Sources */,
-				DB000504169F57B00015CBEF /* Performance_DynGraph.cpp in Sources */,
+				DB6775CB16A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +264,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -287,6 +290,7 @@
 		DB3F18121636D6E100ECB00B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = s;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -37,15 +37,15 @@ int main(int argc, char** argv){
     // ------------------------------
     // --- INPUT - OUTPUT
     string  sourceLGF, sourceTempEdge, target;
-    ArgParser       ap( argc, argv);
-    ap.refOption("g", "Graph file of LEMON GRAPH FORMAT", sourceLGF, true);
-    ap.refOption("t", "Temporal active edges", sourceTempEdge, true);
-    ap.refOption("n", "Target filename", target, true);
-    ap.parse();
+//    ArgParser       ap( argc, argv);
+//    ap.refOption("g", "Graph file of LEMON GRAPH FORMAT", sourceLGF, true);
+//    ap.refOption("t", "Temporal active edges", sourceTempEdge, true);
+//    ap.refOption("n", "Target filename", target, true);
+//    ap.parse();
     
-//    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_.lgf";
-//    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt";
-//    target          = "Test";
+    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_.lgf";
+    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt";
+    target          = "Test";
 
     // ------------------------------
     // --- Graph creation

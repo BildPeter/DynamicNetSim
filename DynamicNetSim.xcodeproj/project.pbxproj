@@ -7,13 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB15DDB416CBAAD000A14BF1 /* Process_DegreeActivity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB15DDB216CBAAD000A14BF1 /* Process_DegreeActivity.cpp */; };
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DB6775CB16A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */; };
-		DBE989BB169DD934001C7675 /* evolve_sa.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18181636D73200ECB00B /* evolve_sa.cc */; };
-		DBE989BC169DD936001C7675 /* evolve.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181A1636D73200ECB00B /* evolve.cc */; };
-		DBE989BD169DD939001C7675 /* gml.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181C1636D73200ECB00B /* gml.cc */; };
-		DBE989BE169DD93D001C7675 /* simulate.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F181F1636D73200ECB00B /* simulate.cc */; };
-		DBE989BF169DD93F001C7675 /* system.cc in Sources */ = {isa = PBXBuildFile; fileRef = DB3F18211636D73200ECB00B /* system.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DB15DDB216CBAAD000A14BF1 /* Process_DegreeActivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_DegreeActivity.cpp; sourceTree = "<group>"; };
 		DB3323401678C063007A1BCD /* Read_tempGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_tempGraph.cpp; sourceTree = "<group>"; };
 		DB3323441678F579007A1BCD /* Read_istreamTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_istreamTest.cpp; sourceTree = "<group>"; };
 		DB3323471678F5CB007A1BCD /* Test_forPairReading.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test_forPairReading.txt; sourceTree = "<group>"; };
@@ -140,6 +136,7 @@
 			children = (
 				DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */,
 				DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */,
+				DB15DDB216CBAAD000A14BF1 /* Process_DegreeActivity.cpp */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -202,12 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE989BB169DD934001C7675 /* evolve_sa.cc in Sources */,
-				DBE989BC169DD936001C7675 /* evolve.cc in Sources */,
-				DBE989BD169DD939001C7675 /* gml.cc in Sources */,
-				DBE989BE169DD93D001C7675 /* simulate.cc in Sources */,
-				DBE989BF169DD93F001C7675 /* system.cc in Sources */,
-				DB6775CB16A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp in Sources */,
+				DB15DDB416CBAAD000A14BF1 /* Process_DegreeActivity.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

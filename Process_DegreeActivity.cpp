@@ -27,6 +27,8 @@
 #include <peter/temporal_graph_handler.h>
 #include <boost/unordered_map.hpp>
 
+#include <fstream>
+
 using namespace lemon;
 using namespace std;
 
@@ -84,10 +86,18 @@ int main(int argc, char** argv){
     target += ss.str();
     target += "steps.txt";
     
-    digraphWriter(mGraph, target)
-    .nodeMap("degree", mDegree)
-    .nodeMap("activity", activity)
-    .skipArcs()
-    .run();
+    ofstream file( target.c_str() );
+    file << "label\tdegree\tactivity\n";
+    for (SmartDigraph::NodeIt n(mGraph); n!=INVALID; ++n) {
+        file << mGraph.id(n) << "\t" << mDegree[ n ] << "\t" << activity[ n ] << endl;
+    }
+    
+    file.close();
+    
+//    digraphWriter(mGraph, target)
+//    .nodeMap("degree", mDegree)
+//    .nodeMap("activity", activity)
+//    .skipArcs()
+//    .run();
     
 }

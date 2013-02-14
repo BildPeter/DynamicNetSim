@@ -45,19 +45,20 @@ int main(int argc, char** argv){
     
     // ------------------------------
     // --- INPUT - OUTPUT
-    string  sourceLGF, sourceTempEdge, target;
+    string  sourceLGF, sourceTempEdge;
     int     initTime = 0;
     
 //    ArgParser       ap( argc, argv);
 //    ap.refOption("i", "Initial time to start from", initTime);  // NOT mandatory
 //    ap.refOption("g", "Graph file of LEMON GRAPH FORMAT", sourceLGF, true);
 //    ap.refOption("t", "Temporal active edges", sourceTempEdge, true);
-//    ap.refOption("n", "Target filename", target, true);
 //    ap.parse();
     
-    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_.lgf";
-    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW__time_tmpArcIDs.txt";
-    target          = "Test";
+//    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW.lgf";
+//    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW_time_tmpArcIDs.txt";
+
+    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/SheepBigClusters_4thres.lfg";
+    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/SheepBigClusters_4thres_tempArcs.txt.dynEdges";
     
     // ------------------------------
     // --- Graph creation
@@ -79,7 +80,6 @@ int main(int argc, char** argv){
     vector<int> times;
     boost::unordered_map< int,  vector<SmartDigraph::Arc > >   mTimeToArcs;
     times = tempGR::readTemporalArcList(mGraph, mTimeToArcs, sourceTempEdge);
-//    int timeSteps = times.size();
     
     // ------------------------------
     // ---  Create the graph though active arcs
@@ -89,43 +89,14 @@ int main(int argc, char** argv){
     int             compNr = -2;
     int             i = initTime;
     
-    while ( compNr != 1) {
-        for ( auto arc : mTimeToArcs[ times[i] ] ){
-            actArcs[ arc] = true;
+    for (auto t : times) {
+        for ( auto arc : mTimeToArcs[ t ] ){
+            actArcs[ arc ] = true;
         }
-        i++;
         compNr = countConnectedComponents( undirector( mySubGraph ) );
-        cout << i << " : " << compNr << endl;
+        cout << i  << " : " << t << " : " << compNr << endl;
+        i++;
         // track components
     }
 
-    // ------------------------------
-    // --- Cal the degree
-//    InDegMap< decltype(mySubGraph) >            inDegree(mySubGraph);
-//    OutDegMap< decltype(mySubGraph) >           outDegree(mySubGraph);
-//    AddMap<decltype(inDegree), decltype(outDegree) > mDegree(inDegree, outDegree);
-
-    
-//    
-//    // --- Filename: add the nr of timesteps
-//    target += "_";
-//    stringstream ss;
-//    ss << timeSteps;
-//    target += ss.str();
-//    target += "steps.txt";
-//    
-//    ofstream file( target.c_str() );
-//    file << "label\tdegree\tactivity\n";
-//    for (SmartDigraph::NodeIt n(mGraph); n!=INVALID; ++n) {
-//        file << mGraph.id(n) << "\t" << mDegree[ n ] << "\t" << activity[ n ] << endl;
-//    }
-//    
-//    file.close();
-    
-    //    digraphWriter(mGraph, target)
-    //    .nodeMap("degree", mDegree)
-    //    .nodeMap("activity", activity)
-    //    .skipArcs()
-    //    .run();
-    
 }

@@ -53,10 +53,10 @@ int main(int argc, char** argv){
 //    ap.refOption("n", "Target filename", target, true);
 //    ap.parse();
 
-    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW.lgf";
-    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW_time_tmpArcIDs.txt";
-//        sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW_.lgf";
-//        sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW__time_tmpArcIDs.txt";
+//    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW.lgf";
+//    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW_time_tmpArcIDs.txt";
+        sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW_.lgf";
+        sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW__time_tmpArcIDs.txt";
         target          = "Test";
     
     // ------------------------------
@@ -96,17 +96,17 @@ int main(int argc, char** argv){
 
     cout << "Nodes: " << countNodes( mGraph ) << " components: " << countConnectedComponents( undirector( mGraph ) ) << endl;
     cout << "Max Comp ID: " << maxCompID << " size: " << *a << endl;
-    int i = 0;
-    for ( auto x : mIDcount ){
-    cout << "Max Comp ID: " << i++ << " size: " << x << endl;
-    }
-    /*
+//    int i = 0;
+//    for ( auto x : mIDcount ){
+//    cout << "Comp ID: " << i++ << " size: " << x << endl;
+//    }
+    
     // ------------------------------
-    // --- Mark nodes with low activity
+    // --- Mark nodes of the biggest component
     // ------------------------------
     vector< ListDigraph::Node >    eraseNodes;
     for (ListDigraph::NodeIt n(mGraph); n!=INVALID; ++n) {
-        if ( activity[n] <= threshold) {
+        if ( mCompIds[ n ] != maxCompID) {
             eraseNodes.push_back(n);
         }
     }
@@ -126,14 +126,16 @@ int main(int argc, char** argv){
     << " components and " << countNodes(mGraph) << " nodes" << endl;
     
     ListDigraph     newGraph;
-    ListDigraph::ArcMap< ListDigraph::Arc >   arcRef( mGraph);
+    ListDigraph::ArcMap< ListDigraph::Arc >     arcRef( mGraph);
+    ListDigraph::NodeMap< ListDigraph::Node>    nodeRef( mGraph );
     
     digraphCopy( mGraph, newGraph)
     .arcRef(arcRef)  // arcMap[ oldArc ] = newArc
+    .nodeRef(nodeRef)
     .run();
     
     // ------------------------------
-    // --- erase the invalid edges
+    // --- erase the invalid temporal edges
     // ------------------------------
     vector< vector< ListDigraph::Arc > >    newTempArcs;
     for (auto i : times){
@@ -149,11 +151,7 @@ int main(int argc, char** argv){
     // --- save the static graph
     // ------------------------------
     string  pathLFG = target;
-    pathLFG += "_";
-    stringstream ss;
-    ss << threshold;
-    pathLFG += ss.str();
-    pathLFG += "thres.lfg";
+    pathLFG += "_LargesComponent.lfg";
     
     digraphWriter( mGraph, pathLFG)
     .run();
@@ -162,12 +160,8 @@ int main(int argc, char** argv){
     // --- save the temporal arcs
     // ------------------------------
     string  pathTempArc = target;
-    pathTempArc += "_";
-    stringstream ss2;
-    ss2 << threshold;
-    pathTempArc += ss2.str();
-    pathTempArc += "thres_tempArcs.txt";
+    pathTempArc += "_LargesComponent_tempArcs.txt";
     
     tempGR::writeTempGraph<ListDigraph>( mGraph, newTempArcs, pathTempArc);
-    */
+    
 }

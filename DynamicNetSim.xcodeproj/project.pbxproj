@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DBC4428316CD1D8400B55D20 /* Process_BiggestComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */; };
+		DBBE191A16D23038006707C8 /* Process_TrackComponents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -205,7 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBC4428316CD1D8400B55D20 /* Process_BiggestComponent.cpp in Sources */,
+				DBBE191A16D23038006707C8 /* Process_TrackComponents.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

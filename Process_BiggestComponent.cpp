@@ -47,23 +47,23 @@ int main(int argc, char** argv){
     // ------------------------------
     string  sourceLGF, sourceTempEdge, target;
     
-//    ArgParser       ap( argc, argv);
-//    ap.refOption("g", "Graph file of LEMON GRAPH FORMAT", sourceLGF, true);
-//    ap.refOption("t", "Temporal active edges", sourceTempEdge, true);
-//    ap.refOption("n", "Target filename", target, true);
-//    ap.parse();
+    ArgParser       ap( argc, argv);
+    ap.refOption("g", "Graph file of LEMON GRAPH FORMAT", sourceLGF, true);
+    ap.refOption("t", "Temporal active edges", sourceTempEdge, true);
+    ap.refOption("n", "Target filename", target, true);
+    ap.parse();
 
 //    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW.lgf";
 //    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW_time_tmpArcIDs.txt";
-        sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW_.lgf";
-        sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW__time_tmpArcIDs.txt";
-        target          = "Test";
+//        sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW_.lgf";
+//        sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW__time_tmpArcIDs.txt";
+//        target          = "Test";
     
     // ------------------------------
     // --- Graph creation
     // ------------------------------
+    cout << "- READING\n";
     ListDigraph                    mGraph;
-    
     try {
         digraphReader(mGraph, sourceLGF)
         .run();
@@ -82,6 +82,7 @@ int main(int argc, char** argv){
     // ------------------------------
     // --- Determine the components
     // ------------------------------
+    cout << "- CALCULATION\n";
     ListDigraph::NodeMap<int>      mCompIds(mGraph);
     mapFill(mGraph, mCompIds, -1);
     int nrComponents        = connectedComponents( undirector( mGraph ), mCompIds );
@@ -104,6 +105,7 @@ int main(int argc, char** argv){
     // ------------------------------
     // --- Mark nodes of the biggest component
     // ------------------------------
+    cout << "- PROCESSING\n";
     vector< ListDigraph::Node >    eraseNodes;
     for (ListDigraph::NodeIt n(mGraph); n!=INVALID; ++n) {
         if ( mCompIds[ n ] != maxCompID) {
@@ -150,10 +152,13 @@ int main(int argc, char** argv){
     // ------------------------------
     // --- save the static graph
     // ------------------------------
+    cout << "- WRITING\n";
     string  pathLFG = target;
     pathLFG += "_LargesComponent.lfg";
     
     digraphWriter( mGraph, pathLFG)
+//    .nodeMap("oldNodes", nodeRef)
+//    .arcMap("oldArcs", arcRef)
     .run();
     
     // ------------------------------
@@ -164,4 +169,5 @@ int main(int argc, char** argv){
     
     tempGR::writeTempGraph<ListDigraph>( mGraph, newTempArcs, pathTempArc);
     
+    cout << "- DONE\n";
 }

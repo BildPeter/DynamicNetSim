@@ -9,7 +9,9 @@
 /*
     AIM:
     Process Data to output a node list with the degree and nr of activities
+    
     Activity is defined for a node as EACH EDGE which interacted with it.
+    Scaling by division through the total nr. of current interactions (arcs).
  
     INPUT:      2 files - LGF and tempEdges
     OUTPUT:     NodeList with degree and activity (TimeSpan in Filename).txt
@@ -37,19 +39,21 @@ int main(int argc, char** argv){
 
     // ------------------------------
     // --- INPUT - OUTPUT
+    // ------------------------------
     string  sourceLGF, sourceTempEdge, target;
-//    ArgParser       ap( argc, argv);
-//    ap.refOption("g", "Graph file of LEMON GRAPH FORMAT", sourceLGF, true);
-//    ap.refOption("t", "Temporal active edges", sourceTempEdge, true);
-//    ap.refOption("n", "Target filename", target, true);
-//    ap.parse();
+    ArgParser       ap( argc, argv);
+    ap.refOption("g", "Graph file of LEMON GRAPH FORMAT", sourceLGF, true);
+    ap.refOption("t", "Temporal active edges", sourceTempEdge, true);
+    ap.refOption("n", "Target filename", target, true);
+    ap.parse();
     
-    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_.lgf";
-    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt";
-    target          = "Test";
+//    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW_.lgf";
+//    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/02 Daten - Schaf/Schaf_NEW__time_tmpArcIDs.txt";
+//    target          = "Test";
 
     // ------------------------------
     // --- Graph creation
+    // ------------------------------
     SmartDigraph                    mGraph;
     try {
         digraphReader(mGraph, sourceLGF)
@@ -58,7 +62,7 @@ int main(int argc, char** argv){
         exit(0);
     }
     
-    SmartDigraph::NodeMap<int>      activity(mGraph);
+    SmartDigraph::NodeMap< double >      activity(mGraph);
     InDegMap<SmartDigraph>          inDegree(mGraph);
     OutDegMap<SmartDigraph>         outDegree(mGraph);
     AddMap<InDegMap<SmartDigraph>, OutDegMap<SmartDigraph> > mDegree(inDegree, outDegree);
@@ -66,6 +70,7 @@ int main(int argc, char** argv){
     
     // ------------------------------
     // --- Temporal Edges
+    // ------------------------------
     vector<int> times;
     boost::unordered_map< int,  vector<SmartDigraph::Arc > >   mTimeToArcs;
     times = tempGR::readTemporalArcList(mGraph, mTimeToArcs, sourceTempEdge);
@@ -73,14 +78,30 @@ int main(int argc, char** argv){
     
     // ------------------------------
     // --- Count the activity
+    // ------------------------------
     for ( auto t : times){
         for (auto arc :mTimeToArcs[t]){
             activity[ mGraph.source( arc ) ]++;
             activity[ mGraph.target( arc ) ]++;
         }
     }
+  
+    // ------------------------------
+    // --- Scaling
+    // ------------------------------
+    // -- count divisor
+    double  mDiv = 0;
+    for ( auto t : times){
+        mDiv += mTimeToArcs[t].size();
+    }
+    // scale
+    for (SmartDigraph::NodeIt n(mGraph); n!=INVALID; ++n) {
+        activity[ n ] /= mDiv;
+    }
     
+    // ------------------------------
     // --- Filename: add the nr of timesteps
+    // ------------------------------
     target += "_";
     stringstream ss;
     ss << timeSteps;

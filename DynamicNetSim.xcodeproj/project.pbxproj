@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DBC4428316CD1D8400B55D20 /* Process_BiggestComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */; };
+		DBAC46E216D3A2E30012B3B5 /* Process_DegreeActivity_Scaled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBAC46E116D3A1ED0012B3B5 /* Process_DegreeActivity_Scaled.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +51,7 @@
 		DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OwnFiles_ToDynEdgeList.cpp; sourceTree = "<group>"; };
 		DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_TrackComponents.cpp; sourceTree = "<group>"; };
 		DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_EraseLowActivity.cpp; sourceTree = "<group>"; };
+		DBAC46E116D3A1ED0012B3B5 /* Process_DegreeActivity_Scaled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_DegreeActivity_Scaled.cpp; sourceTree = "<group>"; };
 		DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_BiggestComponent.cpp; sourceTree = "<group>"; };
 		DBC4A731167F462A00FE236E /* temporal_graph_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = temporal_graph_handler.h; path = ../../../Development/Library/include/peter/temporal_graph_handler.h; sourceTree = "<group>"; };
 		DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Performance_DynGraph.cpp; sourceTree = "<group>"; };
@@ -140,6 +141,7 @@
 				DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */,
 				DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */,
 				DB15DDB216CBAAD000A14BF1 /* Process_DegreeActivity.cpp */,
+				DBAC46E116D3A1ED0012B3B5 /* Process_DegreeActivity_Scaled.cpp */,
 				DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */,
 				DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */,
 				DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */,
@@ -205,7 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBC4428316CD1D8400B55D20 /* Process_BiggestComponent.cpp in Sources */,
+				DBAC46E216D3A2E30012B3B5 /* Process_DegreeActivity_Scaled.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

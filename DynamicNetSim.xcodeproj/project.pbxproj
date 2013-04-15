@@ -57,11 +57,8 @@
 		DBE989B9169DD88F001C7675 /* Performance_DynGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance_DynGraph.h; sourceTree = "<group>"; };
 		DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Process_Trade_NodeData.cpp; path = DynamicNetSim/Process_Trade_NodeData.cpp; sourceTree = "<group>"; };
 		DBF23B25171BF79E0051620C /* Trafo_EdgelistTo_TempLGF_nodeSize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trafo_EdgelistTo_TempLGF_nodeSize.cpp; sourceTree = "<group>"; };
-		DBF23B26171BF79E0051620C /* Trafo_EdgelistTo_TempLGF_nodeSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trafo_EdgelistTo_TempLGF_nodeSize.h; sourceTree = "<group>"; };
 		DBF23B28171C05AE0051620C /* StringStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringStream.cpp; sourceTree = "<group>"; };
-		DBF23B29171C05AE0051620C /* StringStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringStream.h; sourceTree = "<group>"; };
 		DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Processing_NodeSizes.cpp; sourceTree = "<group>"; };
-		DBF23B2E171C310F0051620C /* Processing_NodeSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processing_NodeSizes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,9 +108,6 @@
 				DBF23B25171BF79E0051620C /* Trafo_EdgelistTo_TempLGF_nodeSize.cpp */,
 				DBF23B28171C05AE0051620C /* StringStream.cpp */,
 				DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */,
-				DBF23B2E171C310F0051620C /* Processing_NodeSizes.h */,
-				DBF23B29171C05AE0051620C /* StringStream.h */,
-				DBF23B26171BF79E0051620C /* Trafo_EdgelistTo_TempLGF_nodeSize.h */,
 			);
 			path = DynamicNetSim;
 			sourceTree = "<group>";

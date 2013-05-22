@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DBA4AE80174CF35700CC4C25 /* Process_Time_Cutoff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB431FFA174CB1FB00FFDB61 /* Process_Time_Cutoff.cpp */; };
+		DBA4AE83174D26AA00CC4C25 /* Process_TimeSeries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA4AE81174D26AA00CC4C25 /* Process_TimeSeries.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +52,7 @@
 		DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OwnFiles_ToDynEdgeList.cpp; sourceTree = "<group>"; };
 		DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_TrackComponents.cpp; sourceTree = "<group>"; };
 		DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_EraseLowActivity.cpp; sourceTree = "<group>"; };
+		DBA4AE81174D26AA00CC4C25 /* Process_TimeSeries.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_TimeSeries.cpp; sourceTree = "<group>"; };
 		DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_BiggestComponent.cpp; sourceTree = "<group>"; };
 		DBC4A731167F462A00FE236E /* temporal_graph_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = temporal_graph_handler.h; path = ../../../Development/Library/include/peter/temporal_graph_handler.h; sourceTree = "<group>"; };
 		DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Performance_DynGraph.cpp; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 				DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */,
 				DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */,
 				DB431FFA174CB1FB00FFDB61 /* Process_Time_Cutoff.cpp */,
+				DBA4AE81174D26AA00CC4C25 /* Process_TimeSeries.cpp */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -207,7 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBA4AE80174CF35700CC4C25 /* Process_Time_Cutoff.cpp in Sources */,
+				DBA4AE83174D26AA00CC4C25 /* Process_TimeSeries.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

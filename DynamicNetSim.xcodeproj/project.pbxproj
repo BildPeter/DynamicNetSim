@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DB431FFC174CB1FB00FFDB61 /* Process_Time_Cutoff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB431FFA174CB1FB00FFDB61 /* Process_Time_Cutoff.cpp */; };
+		DBA4AE80174CF35700CC4C25 /* Process_Time_Cutoff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB431FFA174CB1FB00FFDB61 /* Process_Time_Cutoff.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,7 +49,6 @@
 		DB3F18221636D73200ECB00B /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = system.h; path = ../../../Development/Library/include/netevo/system.h; sourceTree = "<group>"; };
 		DB3F18231636D73200ECB00B /* visualise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = visualise.h; path = ../../../Development/Library/include/netevo/visualise.h; sourceTree = "<group>"; };
 		DB431FFA174CB1FB00FFDB61 /* Process_Time_Cutoff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_Time_Cutoff.cpp; sourceTree = "<group>"; };
-		DB431FFB174CB1FB00FFDB61 /* Process_Time_Cutoff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Process_Time_Cutoff.h; sourceTree = "<group>"; };
 		DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OwnFiles_ToDynEdgeList.cpp; sourceTree = "<group>"; };
 		DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_TrackComponents.cpp; sourceTree = "<group>"; };
 		DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_EraseLowActivity.cpp; sourceTree = "<group>"; };
@@ -146,7 +145,6 @@
 				DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */,
 				DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */,
 				DB431FFA174CB1FB00FFDB61 /* Process_Time_Cutoff.cpp */,
-				DB431FFB174CB1FB00FFDB61 /* Process_Time_Cutoff.h */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -209,7 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB431FFC174CB1FB00FFDB61 /* Process_Time_Cutoff.cpp in Sources */,
+				DBA4AE80174CF35700CC4C25 /* Process_Time_Cutoff.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,9 +218,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -248,7 +246,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lemon";
-				SDKROOT = "";
+				SDKROOT = macosx10.7;
 			};
 			name = Debug;
 		};
@@ -256,9 +254,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -278,7 +276,7 @@
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../Development/Library/lib/\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lemon";
-				SDKROOT = "";
+				SDKROOT = macosx10.7;
 			};
 			name = Release;
 		};

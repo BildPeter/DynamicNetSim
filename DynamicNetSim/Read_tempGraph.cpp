@@ -24,22 +24,22 @@
 using namespace std;
 using namespace lemon;
 
-typedef pair< unsigned int, unsigned int > arcIDpair;
+typedef pair< unsigned long long, unsigned long long > arcIDpair;
 
 int main( void ){
 
     Timer   T(true);
     // INPUT
     SmartDigraph                    mGraph;
-    SmartDigraph::NodeMap<int>      mOrigID( mGraph );
-    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/Pork_tempEdgeList.txt";
-    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_xx";
+    SmartDigraph::NodeMap<long long>      mOrigID( mGraph );
+    string edgeListSource   = "/Users/sonneundasche/Desktop/uvwd_OCBD.txt";
+    string outputNAME       = "/Users/sonneundasche/Desktop/Pork_08-09_";
     
-    set< unsigned int >                                                         mUniqueNodes;   //temporär
+    set< unsigned long long >                                                   mUniqueNodes;   //temporär
     set< arcIDpair >                                                            mUniqueArcs;    //temporär
     set< unsigned int >                                                         mUniqueDays;
     map< arcIDpair, SmartDigraph::Arc >                                         mOrigPair_ToArc;
-    unordered_map< unsigned int, SmartDigraph::Node >                           mOrigID_ToNode;
+    unordered_map< unsigned long long, SmartDigraph::Node >                     mOrigID_ToNode;
     unordered_map< unsigned int, vector< arcIDpair > >                          mTime_ToPair_Vec;   //temporär
     unordered_map< unsigned int, map <arcIDpair, int > >                        mTime_ToPair_Amount_Vec;   //temporär
     unordered_map< unsigned int, vector< SmartDigraph::Arc > >                  mTime_toArc_Vec;
@@ -56,8 +56,8 @@ int main( void ){
     
     
     ifstream    myEdgeListFile( edgeListSource );
-    unsigned int from, to, amount, day;
-    pair<int, int>      tmpPair;
+    unsigned long long from, to, amount, day;
+    pair<long long, long long>      tmpPair;
     string      foo;  // kill first line, because it has the header
     getline(myEdgeListFile, foo);
     

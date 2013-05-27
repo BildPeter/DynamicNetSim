@@ -6,24 +6,65 @@
 //  Copyright (c) 2013 Peter. All rights reserved.
 //
 
-#include "Processing_NodeSizes.h"
+/*°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+ °  AIM: 
+ °      - Read the ActiveArc Data with weights
+ °      - Sum up IN- & OUT-Flow for each node
+ °      - Save the FlowSum for specifiy timesteps (read from a file)
+ °
+ °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°*/
 
-#include <lemon/smart_graph.h>
-#include <lemon/lgf_reader.h>
-#include <lemon/adaptors.h>
-#include <lemon/time_measure.h>
 
 #include "temporal_graph_handler.h"
 #include <map>
 #include <fstream>
 
+
+#include <lemon/smart_graph.h>
+#include <lemon/lgf_reader.h>
+#include <lemon/adaptors.h>
+#include <lemon/time_measure.h>
+#include <lemon/arg_parser.h>
+
+#ifdef TERMINAL
+#define INPUT "Terminal"
+#else
+#define INPUT "none"
+#endif
+
+
+
 using namespace lemon;
 
-int main(){
+int main(int argc, char** argv){
 
+    ArgParser   ag( argc, argv);
+    string      pathLFG, pathActivity, pathCountDays, pathTarget;
+
+            std::cout << INPUT << "\n";
+    
+    if (INPUT == "Terminal") {
+        ag
+        .parse();
+    }else {
+        pathLFG         = "/Users/sonneundasche/Desktop/Pork_08-09_.lgf";
+        pathActivity    = "/Users/sonneundasche/Desktop/Pork_08-09__time_tmpArcIDs_amountOnArc.txt";
+        pathCountDays   = "/Users/sonneundasche/Dropbox/FLI/DATA/04_HIT_Transform/_node size/CountDays.txt";
+        pathTarget      = "/Users/sonneundasche/Desktop/NodeSizes_08-09.txt";
+
+//        pathLFG         = "/Users/sonneundasche/Dropbox/FLI/04_HIT_Transform/_node size/Schwein_BL_07.lgf";
+//        pathActivity    = "/Users/sonneundasche/Dropbox/FLI/04_HIT_Transform/_node size/Schwein_BL_07_time_tmpArcIDs_amountOnArc.txt";
+//        pathCountDays   = "/Users/sonneundasche/Dropbox/FLI/04_HIT_Transform/_node size/CountDays.txt";
+//        pathTarget      = "/Users/sonneundasche/Dropbox/FLI/04_HIT_Transform/_node size/NodeSizes.txt";
+    }
+    
+    exit(0);
+    
     Timer       T(true);
     // ================================================================================
-    ifstream    file("/Users/sonneundasche/Dropbox/FLI/04_HIT_Transform/_node size/CountDays.txt");
+    // ===  Read a file, which dates to save the FlowValues
+    // ================================================================================
+    ifstream    file( pathCountDays.c_str() );
     string txt;
     vector<int> days;
     int         tmpDay;
@@ -34,8 +75,8 @@ int main(){
     // ================================================================================
     
     SmartDigraph                                    mGraph;
-    SmartDigraph::NodeMap< unsigned long long >     BNR(    mGraph );
-    SmartDigraph::NodeMap< unsigned int >           flowSum( mGraph );
+    SmartDigraph::NodeMap< long long >     BNR(    mGraph );
+    SmartDigraph::NodeMap< long long >     flowSum( mGraph );
     
     SmartDigraph::ArcMap< bool >                    activeArcs( mGraph );
     SmartDigraph::NodeMap< bool >                   activeNodes( mGraph );
@@ -45,24 +86,25 @@ int main(){
     
     map<int, vector<pair<SmartDigraph::Arc, int> > > time_to_ArcWeightVec;
     
-    digraphReader( mGraph, "/Users/sonneundasche/Dropbox/FLI/04_HIT_Transform/_node size/Schwein_BL_07.lgf")
+    digraphReader( mGraph, pathLFG )
     .nodeMap("origID", BNR)
     .run();
     
-    tempGR::readTemporalArcListWeighted<SmartDigraph>( mGraph,  time_to_ArcWeightVec,
-                                                      "/Users/sonneundasche/Dropbox/FLI/04_HIT_Transform/_node size/Schwein_BL_07_time_tmpArcIDs_amountOnArc.txt");
+    tempGR::readTemporalArcListWeighted<SmartDigraph>( mGraph,  time_to_ArcWeightVec, pathActivity );
     tempGR::temporalGraphActivator<SmartDigraph>    mGraphActivator( mGraph, activeNodes, activeArcs, amountOnArc, time_to_ArcWeightVec);
     
     // ================================================================================
     // To save the intermediate results
-    vector< vector<int > >  resultVec;
+    vector< vector< long long > >  resultVec;
     int dayFit = 0;
     
+    // ================================================================================
+    // === Calculate the IN/OUT Flow values
     // ================================================================================
     for ( auto timeP : time_to_ArcWeightVec){
         int time = timeP.first;
 
-        mGraphActivator.activate( time);
+        mGraphActivator.activate( time );
         for (SubDigraph<SmartDigraph>::NodeIt n( tempGraph ); n!=INVALID; ++n) {
             for (SubDigraph<SmartDigraph>::InArcIt inA(tempGraph, n); inA!=INVALID; ++inA) {
                 flowSum[ n ] += amountOnArc[ inA ];
@@ -78,7 +120,7 @@ int main(){
 
         // Save the map into a vector at the time read from the file
         if ( time == days[ dayFit ]) {
-            vector<int> interm;
+            vector<long long> interm;
             for (SmartDigraph::NodeIt n(mGraph); n!=INVALID; ++n) {
                 interm.push_back( flowSum[ n ] );
             }
@@ -90,7 +132,7 @@ int main(){
     // ================================================================================
     cout << "Calculation Time: " << T.realTime() << "\n";
     
-    ofstream    outFile("/Users/sonneundasche/Dropbox/FLI/04_HIT_Transform/_node size/NodeSizes.txt");
+    ofstream    outFile( pathTarget.c_str() );
     outFile << "BNR";
     for ( auto d : days ){
         outFile << "\t " << d;
@@ -101,7 +143,7 @@ int main(){
     int i = 0;
     for (SmartDigraph::NodeIt n(mGraph); n!=INVALID; ++n) {
         outFile << BNR[ n ];
-        for (auto r : resultVec)
+        for (vector< long long > r : resultVec)
             outFile << "\t" << r[ i ];
         outFile << "\n";
         i++;

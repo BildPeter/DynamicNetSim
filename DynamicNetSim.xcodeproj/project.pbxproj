@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DBF23B2F171C310F0051620C /* Processing_NodeSizes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */; };
+		DBC166A51738FD0700C1E97D /* DynNetSimTerminal.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC166A41738FD0700C1E97D /* DynNetSimTerminal.1 */; };
+		DBC166B11739271E00C1E97D /* Processing_NodeSizes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */; };
+		DBC166B217394AD400C1E97D /* Processing_NodeSizes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -22,6 +24,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		DBC1669E1738FD0700C1E97D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				DBC166A51738FD0700C1E97D /* DynNetSimTerminal.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +42,6 @@
 		DB3323441678F579007A1BCD /* Read_istreamTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_istreamTest.cpp; sourceTree = "<group>"; };
 		DB3323471678F5CB007A1BCD /* Test_forPairReading.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test_forPairReading.txt; sourceTree = "<group>"; };
 		DB332349167909E2007A1BCD /* Read_NewFileFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_NewFileFormat.cpp; sourceTree = "<group>"; };
-		DB33234C16790B89007A1BCD /* Test_forTABReading */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test_forTABReading; sourceTree = "<group>"; };
 		DB3F18061636D6E100ECB00B /* DynamicNetSim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DynamicNetSim; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DynamicNetSim.1; sourceTree = "<group>"; };
 		DB3F18131636D70300ECB00B /* AnonymizePigData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnonymizePigData.cpp; sourceTree = "<group>"; };
@@ -51,6 +62,8 @@
 		DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OwnFiles_ToDynEdgeList.cpp; sourceTree = "<group>"; };
 		DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_TrackComponents.cpp; sourceTree = "<group>"; };
 		DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_EraseLowActivity.cpp; sourceTree = "<group>"; };
+		DBC166A01738FD0700C1E97D /* DynNetSimTerminal */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DynNetSimTerminal; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBC166A41738FD0700C1E97D /* DynNetSimTerminal.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DynNetSimTerminal.1; sourceTree = "<group>"; };
 		DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_BiggestComponent.cpp; sourceTree = "<group>"; };
 		DBC4A731167F462A00FE236E /* temporal_graph_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = temporal_graph_handler.h; path = ../../../Development/Library/include/peter/temporal_graph_handler.h; sourceTree = "<group>"; };
 		DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Performance_DynGraph.cpp; sourceTree = "<group>"; };
@@ -58,11 +71,18 @@
 		DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Process_Trade_NodeData.cpp; path = DynamicNetSim/Process_Trade_NodeData.cpp; sourceTree = "<group>"; };
 		DBF23B25171BF79E0051620C /* Trafo_EdgelistTo_TempLGF_nodeSize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trafo_EdgelistTo_TempLGF_nodeSize.cpp; sourceTree = "<group>"; };
 		DBF23B28171C05AE0051620C /* StringStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringStream.cpp; sourceTree = "<group>"; };
-		DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Processing_NodeSizes.cpp; sourceTree = "<group>"; };
+		DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Processing_NodeSizes.cpp; path = DynamicNetSim/Processing_NodeSizes.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DB3F18031636D6E100ECB00B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBC1669D1738FD0700C1E97D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -81,6 +101,7 @@
 				DBEBCC561637399200128517 /* data */,
 				DBEBCC511637379600128517 /* Processing */,
 				DB3F18091636D6E100ECB00B /* DynamicNetSim */,
+				DBC166A11738FD0700C1E97D /* DynNetSimTerminal */,
 				DB3F18071636D6E100ECB00B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				DB3F18061636D6E100ECB00B /* DynamicNetSim */,
+				DBC166A01738FD0700C1E97D /* DynNetSimTerminal */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,10 +126,8 @@
 				DB3323441678F579007A1BCD /* Read_istreamTest.cpp */,
 				DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */,
 				DB3323471678F5CB007A1BCD /* Test_forPairReading.txt */,
-				DB33234C16790B89007A1BCD /* Test_forTABReading */,
 				DBF23B25171BF79E0051620C /* Trafo_EdgelistTo_TempLGF_nodeSize.cpp */,
 				DBF23B28171C05AE0051620C /* StringStream.cpp */,
-				DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */,
 			);
 			path = DynamicNetSim;
 			sourceTree = "<group>";
@@ -131,6 +151,14 @@
 			name = netevo;
 			sourceTree = "<group>";
 		};
+		DBC166A11738FD0700C1E97D /* DynNetSimTerminal */ = {
+			isa = PBXGroup;
+			children = (
+				DBC166A41738FD0700C1E97D /* DynNetSimTerminal.1 */,
+			);
+			path = DynNetSimTerminal;
+			sourceTree = "<group>";
+		};
 		DBE989B4169DD2BD001C7675 /* Performance */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +177,7 @@
 				DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */,
 				DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */,
 				DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */,
+				DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -180,6 +209,23 @@
 			productReference = DB3F18061636D6E100ECB00B /* DynamicNetSim */;
 			productType = "com.apple.product-type.tool";
 		};
+		DBC1669F1738FD0700C1E97D /* DynNetSimTerminal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBC166A61738FD0700C1E97D /* Build configuration list for PBXNativeTarget "DynNetSimTerminal" */;
+			buildPhases = (
+				DBC1669C1738FD0700C1E97D /* Sources */,
+				DBC1669D1738FD0700C1E97D /* Frameworks */,
+				DBC1669E1738FD0700C1E97D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DynNetSimTerminal;
+			productName = DynNetSimTerminal;
+			productReference = DBC166A01738FD0700C1E97D /* DynNetSimTerminal */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -202,6 +248,7 @@
 			projectRoot = "";
 			targets = (
 				DB3F18051636D6E100ECB00B /* DynamicNetSim */,
+				DBC1669F1738FD0700C1E97D /* DynNetSimTerminal */,
 			);
 		};
 /* End PBXProject section */
@@ -211,7 +258,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBF23B2F171C310F0051620C /* Processing_NodeSizes.cpp in Sources */,
+				DBC166B11739271E00C1E97D /* Processing_NodeSizes.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBC1669C1738FD0700C1E97D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBC166B217394AD400C1E97D /* Processing_NodeSizes.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +277,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -249,8 +304,13 @@
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../Development/Library/lib/\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DTERMINAL",
+				);
 				OTHER_LDFLAGS = "-lemon";
-				SDKROOT = "";
+				SDKROOT = macosx10.7;
+				TERMINAL = TERMINAL;
 			};
 			name = Debug;
 		};
@@ -258,7 +318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -279,8 +339,13 @@
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../Development/Library/lib/\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DTERMINAL",
+				);
 				OTHER_LDFLAGS = "-lemon";
-				SDKROOT = "";
+				SDKROOT = macosx10.7;
+				TERMINAL = TERMINAL;
 			};
 			name = Release;
 		};
@@ -296,6 +361,38 @@
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = s;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DBC166A71738FD0700C1E97D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TERMINAL = TERMINAL;
+			};
+			name = Debug;
+		};
+		DBC166A81738FD0700C1E97D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TERMINAL = TERMINAL;
 			};
 			name = Release;
 		};
@@ -316,6 +413,15 @@
 			buildConfigurations = (
 				DB3F18111636D6E100ECB00B /* Debug */,
 				DB3F18121636D6E100ECB00B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBC166A61738FD0700C1E97D /* Build configuration list for PBXNativeTarget "DynNetSimTerminal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBC166A71738FD0700C1E97D /* Debug */,
+				DBC166A81738FD0700C1E97D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

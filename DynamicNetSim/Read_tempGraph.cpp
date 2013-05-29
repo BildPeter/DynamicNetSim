@@ -7,43 +7,48 @@
 //
 
 
-#include <lemon/smart_graph.h>
-#include <lemon/lgf_writer.h>
-#include <lemon/time_measure.h>
 
-#include <peter/temporal_graph_handler.h>
 
+#include <iostream>
 #include <set>
 #include <map>
 #include <unordered_map>
 #include <unordered_set>
+#include <algorithm>
 #include <fstream>
+
+#include <peter/temporal_graph_handler.h>
+
+
+#include <lemon/smart_graph.h>
+#include <lemon/lgf_writer.h>
+#include <lemon/time_measure.h>
 
 
 
 using namespace std;
 using namespace lemon;
 
-typedef pair< unsigned int, unsigned int > arcIDpair;
+typedef pair< long long, long long > arcIDpair;
 
 int main( void ){
 
     Timer   T(true);
     // INPUT
-    SmartDigraph                    mGraph;
-    SmartDigraph::NodeMap<int>      mOrigID( mGraph );
-    string edgeListSource   = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/Pork_tempEdgeList.txt";
-    string outputNAME       = "/Users/sonneundasche/Documents/FLI/DATA/03 Daten - Schwein/porkNEW_xx";
+    SmartDigraph                            mGraph;
+    SmartDigraph::NodeMap< long long >      mOrigID( mGraph );
+    string edgeListSource   = "/Volumes/Augenweide/HIT_Jul2006_CLEAN.txt";
+    string outputNAME       = "/Volumes/Augenweide/HIT_Jul2006_CLEAN";
     
-    set< unsigned int >                                                         mUniqueNodes;   //temporär
-    set< arcIDpair >                                                            mUniqueArcs;    //temporär
-    set< unsigned int >                                                         mUniqueDays;
+    set< long long >                                                         mUniqueNodes;   //temporär
+    set< arcIDpair >                                                         mUniqueArcs;    //temporär
+    set< long long >                                                         mUniqueDays;
     map< arcIDpair, SmartDigraph::Arc >                                         mOrigPair_ToArc;
-    unordered_map< unsigned int, SmartDigraph::Node >                           mOrigID_ToNode;
-    unordered_map< unsigned int, vector< arcIDpair > >                          mTime_ToPair_Vec;   //temporär
-    unordered_map< unsigned int, map <arcIDpair, int > >                        mTime_ToPair_Amount_Vec;   //temporär
-    unordered_map< unsigned int, vector< SmartDigraph::Arc > >                  mTime_toArc_Vec;
-    unordered_map< unsigned int, vector< pair<SmartDigraph::Arc, int > > >      mTime_toArc_Amount_Vec;
+    unordered_map< long long, SmartDigraph::Node >                           mOrigID_ToNode;
+    unordered_map< long long, vector< arcIDpair > >                          mTime_ToPair_Vec;   //temporär
+    unordered_map< long long, map <arcIDpair, int > >                        mTime_ToPair_Amount_Vec;   //temporär
+    unordered_map< long long, vector< SmartDigraph::Arc > >                  mTime_toArc_Vec;
+    unordered_map< long long, vector< pair<SmartDigraph::Arc, int > > >      mTime_toArc_Amount_Vec;
 /*
     // --- Daten Anordnung ---
     // From	To	Amount	Date
@@ -56,8 +61,8 @@ int main( void ){
     
     
     ifstream    myEdgeListFile( edgeListSource );
-    unsigned int from, to, amount, day;
-    pair<int, int>      tmpPair;
+    long long from, to, amount, day;
+    pair<long long, long long>      tmpPair;
     string      foo;  // kill first line, because it has the header
     getline(myEdgeListFile, foo);
     
@@ -80,6 +85,7 @@ int main( void ){
     }
     cout << "Unique - \t Nodes " << mUniqueNodes.size() << " Arcs: " << mUniqueArcs.size() << endl;;
 
+
     
     // ========= CREATE AGGREGATED GRAPH =======
     
@@ -87,16 +93,20 @@ int main( void ){
     // --- Create nodes in graph
     // ---- combine ID with the new node
     // ---------------------------------------------------
+//    std::sort( mUniqueNodes.begin(), mUniqueNodes.end() );
+    SmartDigraph::Node n;
+    
     for ( auto nodeID : mUniqueNodes ) {
-        SmartDigraph::Node n = mGraph.addNode();
+        n = mGraph.addNode();
         mOrigID_ToNode[ nodeID ] =  n ;
     }
     // ---------------------------------------------------
     // --- Create ARCS in graph
     // --- combine pairIDs with the new arc
     // ---------------------------------------------------
+    SmartDigraph::Arc   arc;
     for ( auto arcPair : mUniqueArcs ){
-        SmartDigraph::Arc   arc = mGraph.addArc( mOrigID_ToNode[ arcPair.first ], mOrigID_ToNode[ arcPair.second ] );
+        arc = mGraph.addArc( mOrigID_ToNode[ arcPair.first ], mOrigID_ToNode[ arcPair.second ] );
         mOrigPair_ToArc.insert( make_pair( arcPair, arc )  );
     }
     

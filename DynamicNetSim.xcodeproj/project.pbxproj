@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DBF23B2F171C310F0051620C /* Processing_NodeSizes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */; };
+		DBF73831175639AC003D1305 /* Read_tempGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB3323401678C063007A1BCD /* Read_tempGraph.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,7 +58,7 @@
 		DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Process_Trade_NodeData.cpp; path = DynamicNetSim/Process_Trade_NodeData.cpp; sourceTree = "<group>"; };
 		DBF23B25171BF79E0051620C /* Trafo_EdgelistTo_TempLGF_nodeSize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trafo_EdgelistTo_TempLGF_nodeSize.cpp; sourceTree = "<group>"; };
 		DBF23B28171C05AE0051620C /* StringStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringStream.cpp; sourceTree = "<group>"; };
-		DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Processing_NodeSizes.cpp; sourceTree = "<group>"; };
+		DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Processing_NodeSizes.cpp; path = DynamicNetSim/Processing_NodeSizes.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +107,6 @@
 				DB33234C16790B89007A1BCD /* Test_forTABReading */,
 				DBF23B25171BF79E0051620C /* Trafo_EdgelistTo_TempLGF_nodeSize.cpp */,
 				DBF23B28171C05AE0051620C /* StringStream.cpp */,
-				DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */,
 			);
 			path = DynamicNetSim;
 			sourceTree = "<group>";
@@ -149,6 +148,7 @@
 				DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */,
 				DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */,
 				DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */,
+				DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBF23B2F171C310F0051620C /* Processing_NodeSizes.cpp in Sources */,
+				DBF73831175639AC003D1305 /* Read_tempGraph.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,9 +222,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -247,7 +247,7 @@
 					"\"$(SRCROOT)/../../../Development/Library/include/\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../Development/Library/lib/\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lemon";
 				SDKROOT = "";
@@ -258,9 +258,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -278,7 +278,7 @@
 					"\"$(SRCROOT)/../../../Development/Library/include/\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../Development/Library/lib/\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "-lemon";
 				SDKROOT = "";
 			};

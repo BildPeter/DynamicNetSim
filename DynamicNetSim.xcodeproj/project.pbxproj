@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB3F180D1636D6E100ECB00B /* DynamicNetSim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3F180C1636D6E100ECB00B /* DynamicNetSim.1 */; };
-		DBF73831175639AC003D1305 /* Read_tempGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB3323401678C063007A1BCD /* Read_tempGraph.cpp */; };
+		DB5E89371756563200696760 /* Processing_Flows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB5E89351756563200696760 /* Processing_Flows.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +48,9 @@
 		DB3F18211636D73200ECB00B /* system.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = system.cc; path = ../../../Development/Library/include/netevo/system.cc; sourceTree = "<group>"; };
 		DB3F18221636D73200ECB00B /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = system.h; path = ../../../Development/Library/include/netevo/system.h; sourceTree = "<group>"; };
 		DB3F18231636D73200ECB00B /* visualise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = visualise.h; path = ../../../Development/Library/include/netevo/visualise.h; sourceTree = "<group>"; };
+		DB5E89311756433300696760 /* Process_Time_Cutoff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_Time_Cutoff.cpp; sourceTree = "<group>"; };
+		DB5E89321756433300696760 /* Process_TimeSeries.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_TimeSeries.cpp; sourceTree = "<group>"; };
+		DB5E89351756563200696760 /* Processing_Flows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Processing_Flows.cpp; sourceTree = "<group>"; };
 		DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OwnFiles_ToDynEdgeList.cpp; sourceTree = "<group>"; };
 		DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_TrackComponents.cpp; sourceTree = "<group>"; };
 		DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_EraseLowActivity.cpp; sourceTree = "<group>"; };
@@ -149,6 +152,9 @@
 				DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */,
 				DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */,
 				DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */,
+				DB5E89351756563200696760 /* Processing_Flows.cpp */,
+				DB5E89311756433300696760 /* Process_Time_Cutoff.cpp */,
+				DB5E89321756433300696760 /* Process_TimeSeries.cpp */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -211,7 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBF73831175639AC003D1305 /* Read_tempGraph.cpp in Sources */,
+				DB5E89371756563200696760 /* Processing_Flows.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

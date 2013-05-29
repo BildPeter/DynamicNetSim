@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DynNetSimTerminal.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>DynamicNetSim TERMINAL.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>DynamicNetSim.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>DB3F18051636D6E100ECB00B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DBC1669F1738FD0700C1E97D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

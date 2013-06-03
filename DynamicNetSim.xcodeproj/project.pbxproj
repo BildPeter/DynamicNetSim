@@ -136,6 +136,8 @@
 		DB69BD50175D0AE000B2FBAD /* OLD */ = {
 			isa = PBXGroup;
 			children = (
+				DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */,
+				DB15DDB216CBAAD000A14BF1 /* Process_DegreeActivity.cpp */,
 			);
 			name = OLD;
 			sourceTree = "<group>";
@@ -155,10 +157,8 @@
 				DB69BD50175D0AE000B2FBAD /* OLD */,
 				DB6775C916A5779D0031BB54 /* OwnFiles_ToDynEdgeList.cpp */,
 				DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */,
-				DB15DDB216CBAAD000A14BF1 /* Process_DegreeActivity.cpp */,
 				DB9318B016CBF5B100DED6D1 /* Process_TrackComponents.cpp */,
 				DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */,
-				DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */,
 				DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */,
 				DB5E89351756563200696760 /* Processing_Flows.cpp */,
 				DB5E89311756433300696760 /* Process_Time_Cutoff.cpp */,

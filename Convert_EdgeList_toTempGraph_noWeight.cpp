@@ -34,10 +34,13 @@ int main( int argc, char** argv ){
     string edgeListSource   = "/Volumes/Augenweide/Facebook/data/facebook_links_zero.txt";
     string outputNAME       = "/Volumes/Augenweide/Facebook/data/facebook_Links";
 
-//    ArgParser   ag( argc, argv);
-//    ag.refOption("i", "Input edge list", edgeListSource, true);
-//    ag.refOption("o", "Name of TWO output files. No Ending", outputNAME, true);
-//    ag.parse();
+    if ( argc < 2 ) {
+        cout << "\n1.) IN edgeList with time \n2.) target name\n";
+        return 1;
+    }else{
+        edgeListSource      = argv[ 1 ];
+        outputNAME          = argv[ 2 ];
+    }
 
     
     Timer   T(true);

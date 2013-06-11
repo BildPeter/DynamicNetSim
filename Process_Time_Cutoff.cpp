@@ -40,8 +40,8 @@ int main( int argc, char** argv ){
     int             initTime, endTime;
     Timer           T;
     
-    initTime        = 1870;
-    endTime         = 2600;
+    initTime        = 1000;
+    endTime         = 3000;
     pathSourceLGF   = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW_.lgf";
     pathSourceTMP   = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW__time_tmpArcIDs.txt";
     pathSourceTMP_W = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/porkNEW__time_tmpArcIDs_amountOnArc.txt";
@@ -52,9 +52,11 @@ int main( int argc, char** argv ){
     SmartDigraph                        g;
     SmartDigraph::NodeMap< bool >       activeNodes( g );
     SmartDigraph::ArcMap< bool>         activeArcs( g );
+    SmartDigraph::NodeMap< int >        nodeID( g );
 
     
     digraphReader( g, pathSourceLGF )
+    .nodeMap("origID", nodeID)
     .run();
     cout << T.realTime() << endl; T.restart();
     cout << "LGF read\n";
@@ -95,8 +97,8 @@ int main( int argc, char** argv ){
     .arcRef(  giveTargetArc )
     .run();
     
-    cout  << countNodes( g )    << "\t" << countNodes( f ) << endl;
-    cout  << countArcs( g )     << "\t" << countArcs( f ) << endl;
+    cout  << countNodes( g )    << "\tnew Nodes: " << countNodes( f ) << endl;
+    cout  << countArcs( g )     << "\tnew Arcs:" << countArcs( f ) << endl;
     
     
     for (int time = initTime; time < endTime; time++) {
@@ -121,10 +123,11 @@ int main( int argc, char** argv ){
         resultArcs_Weight.push_back( mPairVec );
     }
 
-    tempGR::writeTempGraph<SmartDigraph>( f, resultArcs, "/Users/sonneundasche/Documents/FLI/DATA/03Pork/pork_TwoYears_tempArcs.txt");
-    tempGR::writeTempGraph_weighted<SmartDigraph>( f, resultArcs_Weight, "/Users/sonneundasche/Documents/FLI/DATA/03Pork/pork_TwoYears_tempArcs_weighted.txt");
+    tempGR::writeTempGraph<SmartDigraph>( f, resultArcs, "/Users/sonneundasche/Desktop//pork_FromTime1000_tempArcs.txt");
+    tempGR::writeTempGraph_weighted<SmartDigraph>( f, resultArcs_Weight, "/Users/sonneundasche/Desktop/pork_FromTime1000_tempArcs_weighted.txt");
     
-    digraphWriter(f, "/Users/sonneundasche/Documents/FLI/DATA/03Pork/pork_TwoYears.lgf")
+    digraphWriter(f, "/Users/sonneundasche/Desktop/pork_FromTime1000.lgf")
+    .nodeMap("origID", nodeID)
     .run();
     
     cout << T.realTime() << endl; T.restart();

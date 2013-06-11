@@ -52,21 +52,20 @@ int main(int argc, char** argv){
     string  sourceLGF, sourceTempEdge, target;
     int     initTime = 0;
 
-    
-//    ArgParser       ap( argc, argv);
-//    ap.refOption("n", "Target Filename", target, true);
-//    ap.refOption("i", "Initial time to start from", initTime);  // NOT mandatory
-//    ap.refOption("g", "Graph file of LEMON GRAPH FORMAT", sourceLGF, true);
-//    ap.refOption("t", "Temporal active edges", sourceTempEdge, true);
-//    ap.parse();
-    
-//    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW.lgf";
-//    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/02Sheep/Schaf_NEW_time_tmpArcIDs.txt";
+    sourceLGF       = "/Volumes/Augenweide/Facebook/data/facebook_WallPosts.lgf";
+    sourceTempEdge  = "/Volumes/Augenweide/Facebook/data/facebook_WallPosts_time_tmpArcIDs.txt";
+    target          = "/Volumes/Augenweide/Facebook/data/fb_TimeSeries.txt";
 
-    sourceLGF       = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/pork_TwoYears.lgf";
-    sourceTempEdge  = "/Users/sonneundasche/Documents/FLI/DATA/03Pork/pork_TwoYears_tempArcs.txt";
-    target          = "/Users/sonneundasche/Desktop/pork2y_timeseriesA.txt";
-
+    if ( argc < 3 ) {
+        cout << "\n1.) source LGF \n2.) source dynEdges \n3.) target name\n";
+        return 1;
+    }else{
+        sourceLGF       = argv[ 1 ];
+        sourceTempEdge  = argv[ 2 ];
+        target          = argv[ 3 ];
+    }
+        
+    
     // ------------------------------
     // --- Graph creation
     // ------------------------------

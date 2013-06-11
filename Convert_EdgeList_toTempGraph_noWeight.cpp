@@ -1,28 +1,26 @@
 //
-//  Read_tempGraph.cpp
+//  Process_EdgeList_toTempGraph_noWeight.cpp
 //  DynamicNetSim
 //
-//  Created by Peter on 12.12.12.
-//  Copyright (c) 2012 Peter. All rights reserved.
+//  Created by Peter on 03.06.13.
+//  Copyright (c) 2013 Peter. All rights reserved.
 //
-
-
-
-
-#include <iostream>
-#include <set>
-#include <map>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-#include <fstream>
-
-#include <peter/temporal_graph_handler.h>
 
 
 #include <lemon/smart_graph.h>
 #include <lemon/lgf_writer.h>
 #include <lemon/time_measure.h>
+#include <lemon/arg_parser.h>
+
+#include <peter/temporal_graph_handler.h>
+
+#include <iostream>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <fstream>
+
+
 
 
 
@@ -31,14 +29,25 @@ using namespace lemon;
 
 typedef pair< long long, long long > arcIDpair;
 
-int main( void ){
+int main( int argc, char** argv ){
+    
+    string edgeListSource   = "/Volumes/Augenweide/Facebook/data/facebook_links_zero.txt";
+    string outputNAME       = "/Volumes/Augenweide/Facebook/data/facebook_Links";
 
+    if ( argc < 2 ) {
+        cout << "\n1.) IN edgeList with time \n2.) target name\n";
+        return 1;
+    }else{
+        edgeListSource      = argv[ 1 ];
+        outputNAME          = argv[ 2 ];
+    }
+
+    
     Timer   T(true);
     // INPUT
     SmartDigraph                            mGraph;
     SmartDigraph::NodeMap< long long >      mOrigID( mGraph );
-    string edgeListSource   = "/Volumes/Augenweide/HIT_Jul2006_CLEAN.txt";
-    string outputNAME       = "/Volumes/Augenweide/HIT_Jul2006_CLEAN";
+
     
     set< long long >                                                         mUniqueNodes;   //temporär
     set< arcIDpair >                                                         mUniqueArcs;    //temporär
@@ -46,22 +55,22 @@ int main( void ){
     map< arcIDpair, SmartDigraph::Arc >                                         mOrigPair_ToArc;
     unordered_map< long long, SmartDigraph::Node >                           mOrigID_ToNode;
     unordered_map< long long, vector< arcIDpair > >                          mTime_ToPair_Vec;   //temporär
-    unordered_map< long long, map <arcIDpair, int > >                        mTime_ToPair_Amount_Vec;   //temporär
-    unordered_map< long long, vector< SmartDigraph::Arc > >                  mTime_toArc_Vec;
-    unordered_map< long long, vector< pair<SmartDigraph::Arc, int > > >      mTime_toArc_Amount_Vec;
-/*
-    // --- Daten Anordnung ---
-    // From	To	Amount	Date
-    // 560739	254569	7	2682
-    // 913338	356536	1	3497
- */
-    
 
+    unordered_map< long long, vector< SmartDigraph::Arc > >                  mTime_toArc_Vec;
+
+    /*
+     // --- Daten Anordnung ---
+     // From	To	Date
+     // 560739	254569	2682
+     // 913338	356536	3497
+     */
+    
+    
     mGraph.clear();     // the Input graph will be resettet
     
     
     ifstream    myEdgeListFile( edgeListSource );
-    long long from, to, amount, day;
+    long long from, to, day;
     pair<long long, long long>      tmpPair;
     string      foo;  // kill first line, because it has the header
     getline(myEdgeListFile, foo);
@@ -71,7 +80,6 @@ int main( void ){
         
         myEdgeListFile >> from;
         myEdgeListFile >> to;
-        myEdgeListFile >> amount;
         myEdgeListFile >> day;
         
         mUniqueNodes.insert( from );
@@ -81,11 +89,9 @@ int main( void ){
         tmpPair = make_pair( from, to );
         mUniqueArcs.insert( tmpPair );
         mTime_ToPair_Vec[ day ].push_back( tmpPair );
-        mTime_ToPair_Amount_Vec[ day ].insert( make_pair( tmpPair, amount ) );
     }
     cout << "Unique - \t Nodes " << mUniqueNodes.size() << " Arcs: " << mUniqueArcs.size() << endl;;
-
-
+    
     
     // ========= CREATE AGGREGATED GRAPH =======
     
@@ -93,7 +99,7 @@ int main( void ){
     // --- Create nodes in graph
     // ---- combine ID with the new node
     // ---------------------------------------------------
-//    std::sort( mUniqueNodes.begin(), mUniqueNodes.end() );
+    //    std::sort( mUniqueNodes.begin(), mUniqueNodes.end() );
     SmartDigraph::Node n;
     
     for ( auto nodeID : mUniqueNodes ) {
@@ -118,16 +124,13 @@ int main( void ){
     }
     
     // ========= CREATE TEMPORAL ARCS =======
-
+    
     // ---------------------------------------------------
     // --- Transform pair of IDs into arcs
     // ---------------------------------------------------
     for ( auto time : mUniqueDays ){
         for ( auto mPair : mTime_ToPair_Vec[ time ] ){
             mTime_toArc_Vec[ time ].push_back( mOrigPair_ToArc[ mPair ] );
-            mTime_toArc_Amount_Vec[ time ].push_back( make_pair(
-                                                                mOrigPair_ToArc[ mPair ],
-                                                                (mTime_ToPair_Amount_Vec[ time ])[ mPair ] ) );
         }
     }
     
@@ -155,31 +158,5 @@ int main( void ){
         outFile << endl;
     }
     outFile.close();
-
-    outFile.open( outputNAME + "_time_tmpArcIDs_amountOnArc.txt" );
-    outFile << "time" << "\t" << "arcIDs_amount" << endl;
     
-    for ( auto time : mUniqueDays){
-        outFile << time << "\t";
-        for ( auto pair : mTime_toArc_Amount_Vec[time] ){
-            outFile << mGraph.id( pair.first ) << " " << pair.second << "\t";
-        }
-        outFile << endl;
-    }
-    outFile.close();
-
-    
-    outFile.open( outputNAME + "_time_countArcs.txt" );
-    outFile << "time" << "\t" << "amountOfArcs" << endl;
-    for ( auto time : mUniqueDays){
-        outFile << time << "\t";
-        outFile << mTime_toArc_Vec[time].size() << endl;
-    }
-    outFile.close();
-    
-    
-
-//    delete mUniqueArcs;
-//    delete mUniqueNodes;
 }
-

@@ -203,7 +203,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
-				ORGANIZATIONNAME = Peter;
+				ORGANIZATIONNAME = "Peter A. Kolski";
 			};
 			buildConfigurationList = DB3F18001636D6E100ECB00B /* Build configuration list for PBXProject "DynamicNetSim" */;
 			compatibilityVersion = "Xcode 3.2";

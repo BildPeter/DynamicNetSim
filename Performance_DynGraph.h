@@ -2,8 +2,22 @@
 //  Performance_DynGraph.h
 //  DynamicNetSim
 //
-//  Created by Peter A. Kolski on 09.01.13.
-//  Copyright (c) 2013 Peter A. Kolski. All rights reserved.
+//  Created by Peter A. Kolski (BildPeter Visuals) on 09.01.13.
+//  Copyright (c) 2013 Peter A. Kolski.
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  For the GNU General Public License see <http://www.gnu.org/licenses/>.
+//
+//
 //
 
 #ifndef __DynamicNetSim__Performance_DynGraph__

@@ -2,8 +2,8 @@
 //  Process_BiggestComponent.cpp
 //  DynamicNetSim
 //
-//  Created by Peter on 14.02.13.
-//  Copyright (c) 2013 Peter. All rights reserved.
+//  Created by Peter A. Kolski on 14.02.13.
+//  Copyright (c) 2013 Peter A. Kolski. All rights reserved.
 //
 
 

@@ -2,8 +2,8 @@
 //  Process_Trade_NodeData.cpp
 //  DynamicNetSim
 //
-//  Created by Peter on 23.10.12.
-//  Copyright (c) 2012 Peter. All rights reserved.
+//  Created by Peter A. Kolski on 23.10.12.
+//  Copyright (c) 2012 Peter A. Kolski. All rights reserved.
 //
 
 

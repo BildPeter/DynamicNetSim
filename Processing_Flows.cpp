@@ -2,8 +2,8 @@
 //  Processing_Flows.cpp
 //  DynamicNetSim
 //
-//  Created by Peter on 29.05.13.
-//  Copyright (c) 2013 Peter. All rights reserved.
+//  Created by Peter A. Kolski on 29.05.13.
+//  Copyright (c) 2013 Peter A. Kolski. All rights reserved.
 //
 
 

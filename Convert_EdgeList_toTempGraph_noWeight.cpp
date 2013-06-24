@@ -2,8 +2,8 @@
 //  Process_EdgeList_toTempGraph_noWeight.cpp
 //  DynamicNetSim
 //
-//  Created by Peter on 03.06.13.
-//  Copyright (c) 2013 Peter. All rights reserved.
+//  Created by Peter A. Kolski on 03.06.13.
+//  Copyright (c) 2013 Peter A. Kolski. All rights reserved.
 //
 
 

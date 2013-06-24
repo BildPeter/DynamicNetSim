@@ -2,8 +2,8 @@
 //  Performance_DynGraph.h
 //  DynamicNetSim
 //
-//  Created by Peter on 09.01.13.
-//  Copyright (c) 2013 Peter. All rights reserved.
+//  Created by Peter A. Kolski on 09.01.13.
+//  Copyright (c) 2013 Peter A. Kolski. All rights reserved.
 //
 
 #ifndef __DynamicNetSim__Performance_DynGraph__

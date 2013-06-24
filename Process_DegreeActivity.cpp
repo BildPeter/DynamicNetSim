@@ -3,7 +3,7 @@
 //  DynamicNetSim
 //
 //  Created by Peter A. Kolski on 13.02.13.
-//  Copyright (c) 2013 Peter. All rights reserved.
+//  Copyright (c) 2013 Peter A. Kolski. All rights reserved.
 //
 
 /*

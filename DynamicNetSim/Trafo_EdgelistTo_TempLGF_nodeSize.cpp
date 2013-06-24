@@ -3,7 +3,7 @@
 //  DynamicNetSim
 //
 //  Created by Peter A. Kolski on 15.04.13.
-//  Copyright (c) 2013 Peter. All rights reserved.
+//  Copyright (c) 2013 Peter A. Kolski. All rights reserved.
 //
 
 #include "Trafo_EdgelistTo_TempLGF_nodeSize.h"

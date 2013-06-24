@@ -2,8 +2,8 @@
 //  Read_NewFileFormat.cpp
 //  DynamicNetSim
 //
-//  Created by Peter on 12.12.12.
-//  Copyright (c) 2012 Peter. All rights reserved.
+//  Created by Peter A. Kolski on 12.12.12.
+//  Copyright (c) 2012 Peter A. Kolski. All rights reserved.
 //
 
 #include <unistd.h>

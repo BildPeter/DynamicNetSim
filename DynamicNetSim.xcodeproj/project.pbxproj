@@ -27,7 +27,7 @@
 /* Begin PBXFileReference section */
 		DB15DDB216CBAAD000A14BF1 /* Process_DegreeActivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_DegreeActivity.cpp; sourceTree = "<group>"; };
 		DB2CD87A177B22250067AD30 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		DB3323401678C063007A1BCD /* Read_tempGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Read_tempGraph.cpp; path = DynamicNetSim/Read_tempGraph.cpp; sourceTree = "<group>"; };
+		DB3323401678C063007A1BCD /* Read_tempGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_tempGraph.cpp; sourceTree = "<group>"; };
 		DB3323441678F579007A1BCD /* Read_istreamTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_istreamTest.cpp; sourceTree = "<group>"; };
 		DB3323471678F5CB007A1BCD /* Test_forPairReading.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Test_forPairReading.txt; sourceTree = "<group>"; };
 		DB332349167909E2007A1BCD /* Read_NewFileFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Read_NewFileFormat.cpp; sourceTree = "<group>"; };
@@ -57,12 +57,12 @@
 		DB9318B516CC07CD00DED6D1 /* Process_EraseLowActivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_EraseLowActivity.cpp; sourceTree = "<group>"; };
 		DB9F8444175CE3A700AE9DC7 /* Convert_EdgeList_toTempGraph_noWeight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Convert_EdgeList_toTempGraph_noWeight.cpp; sourceTree = "<group>"; };
 		DBC4427E16CD184800B55D20 /* Process_BiggestComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_BiggestComponent.cpp; sourceTree = "<group>"; };
-		DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Performance_DynGraph.cpp; sourceTree = "<group>"; };
-		DBE989B9169DD88F001C7675 /* Performance_DynGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance_DynGraph.h; sourceTree = "<group>"; };
-		DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Process_Trade_NodeData.cpp; path = DynamicNetSim/Process_Trade_NodeData.cpp; sourceTree = "<group>"; };
+		DBE989B8169DD88F001C7675 /* Performance_DynGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Performance_DynGraph.cpp; path = Performance/Performance_DynGraph.cpp; sourceTree = "<group>"; };
+		DBE989B9169DD88F001C7675 /* Performance_DynGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Performance_DynGraph.h; path = Performance/Performance_DynGraph.h; sourceTree = "<group>"; };
+		DBEBCC53163737AC00128517 /* Process_Trade_NodeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Process_Trade_NodeData.cpp; sourceTree = "<group>"; };
 		DBF23B25171BF79E0051620C /* Trafo_EdgelistTo_TempLGF_nodeSize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trafo_EdgelistTo_TempLGF_nodeSize.cpp; sourceTree = "<group>"; };
 		DBF23B28171C05AE0051620C /* StringStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringStream.cpp; path = DynamicNetSim/StringStream.cpp; sourceTree = "<group>"; };
-		DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Processing_NodeSizes.cpp; path = DynamicNetSim/Processing_NodeSizes.cpp; sourceTree = "<group>"; };
+		DBF23B2D171C310F0051620C /* Processing_NodeSizes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Processing_NodeSizes.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +173,7 @@
 				DB3323401678C063007A1BCD /* Read_tempGraph.cpp */,
 				DB9F8444175CE3A700AE9DC7 /* Convert_EdgeList_toTempGraph_noWeight.cpp */,
 			);
-			name = DataProcessing;
+			path = DataProcessing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

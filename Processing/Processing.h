@@ -168,11 +168,6 @@ void ElementWise_TimeSeries::process(){
                 newArcs[ n ].push_back( currentDegree - lastGlobalDegree[ n ] );
                 lastGlobalDegree[ n ] = currentDegree;
             }
-            
-            // --- ARCS ---
-            for (SubDigraph<SmartDigraph>::ArcIt a(tempGraph); a!=INVALID; ++a) {
-                arcFlow[a].push_back( amountOnArc[ a ] );
-            }
             mGraphActivator->deactivate( time);
         }
     }
@@ -236,8 +231,7 @@ void ElementWise_TimeSeries::writeData(string targetPath ){
     outFile_newArs << "\n";
     
     // WRITE THE DATA
-    for ( auto timeP : time_to_ArcWeightVec){
-        int time = timeP.first;
+    for ( int time = 0; time < time_ToArcVec.size(); time++){
         outFile_degree << time << "\t";
         outFile_newArs << time << "\t";
         for (SmartDigraph::NodeIt n( mGraph ); n!=INVALID; ++n) {

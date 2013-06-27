@@ -30,7 +30,7 @@
  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°*/
 
 
-#include "temporal_graph_handler.h"
+#include <peter/temporal_graph_handler.h>
 #include <map>
 #include <fstream>
 
@@ -42,6 +42,7 @@
 #include <lemon/time_measure.h>
 #include <lemon/arg_parser.h>
 #include <lemon/maps.h>
+#include <lemon/connectivity.h>
 
 
 using namespace lemon;
@@ -52,7 +53,7 @@ int main(int argc, char** argv){
     string          pathLFG, pathActivity, pathCountDays, pathTarget;
     pathLFG         = "/Volumes/Augenweide/HIT_Jul2006_CLEAN.lgf";
     pathActivity    = "/Volumes/Augenweide/HIT_Jul2006_CLEAN_time_tmpArcIDs_amountOnArc.txt";
-    pathTarget      = "/Volumes/Augenweide/HIT_Jul2006_Flow.lgf";
+    pathTarget      = "/Volumes/Augenweide/HIT_Jul2006_Flow_Daily.lgf";
     
     Timer       T(true);
     // ================================================================================
@@ -64,10 +65,13 @@ int main(int argc, char** argv){
     SmartDigraph::NodeMap< long long >      outFlow( mGraph, 0 );
     SmartDigraph::NodeMap< long long >      activeDays( mGraph, 0);
     SmartDigraph::NodeMap< int >            nodeLastDay( mGraph, -1);
+    SmartDigraph::NodeMap< int >            maxInFlowPerDay( mGraph, 0 );
+    SmartDigraph::NodeMap< int >            maxOutFlowPerDay( mGraph, 0 );
+    SmartDigraph::NodeMap< int >            mComponents( mGraph, -1 );
     SmartDigraph::ArcMap< long long >       arcFlow( mGraph, 0 );
     SmartDigraph::ArcMap<long long >        arcDays( mGraph, 0 );
     SmartDigraph::ArcMap< int >             arcLastDay( mGraph, -1);
-    SmartDigraph::ArcMap< unsigned int >    amountOnArc( mGraph, 0 );
+    SmartDigraph::ArcMap< int >             amountOnArc( mGraph, 0 );
     
     SmartDigraph::ArcMap< bool >            activeArcs( mGraph, false );
     SmartDigraph::NodeMap< bool >           activeNodes( mGraph, false );
@@ -75,6 +79,8 @@ int main(int argc, char** argv){
     
     InDegMap<SmartDigraph>                  inDegree( mGraph );
     OutDegMap<SmartDigraph>                 outDegree( mGraph );
+    
+    int currentInFlow, currentOutFlow;
     
     map<int, vector<pair<SmartDigraph::Arc, int> > > time_to_ArcWeightVec;
     
@@ -96,19 +102,33 @@ int main(int argc, char** argv){
         
         mGraphActivator.activate( time );
         for (SubDigraph<SmartDigraph>::NodeIt n( tempGraph ); n!=INVALID; ++n) {
+            currentInFlow   = 0;
+            currentOutFlow  = 0;
             activeDays[ n ]++;
             nodeLastDay[ n ] = time;
             
-            
             for (SubDigraph<SmartDigraph>::InArcIt inA(tempGraph, n); inA!=INVALID; ++inA) {
-                flowSum[ n ] += amountOnArc[ inA ];
-                inFlow[ n ] += amountOnArc[ inA ];
+                currentInFlow += amountOnArc[ inA ];
             }
             for (SubDigraph<SmartDigraph>::OutArcIt outA(tempGraph, n); outA!=INVALID; ++outA) {
-                flowSum[ n ] -= amountOnArc[ outA ];
-                outFlow[ n ] += amountOnArc[ outA ];
+                currentOutFlow += amountOnArc[ outA ];
+            }
+            
+            flowSum[ n ]    += ( currentInFlow - currentOutFlow );
+            inFlow[ n ]     += currentInFlow;
+            outFlow[ n ]    += currentOutFlow;
+
+            // --- set the maximum daily flow values
+            if (maxInFlowPerDay[ n ] < currentInFlow) {
+                maxInFlowPerDay[ n ] = currentInFlow;
+            }
+            
+            if (maxOutFlowPerDay[ n ] < currentOutFlow ) {
+                maxOutFlowPerDay[ n ] = currentOutFlow;
             }
         }
+        
+        
         for (SubDigraph<SmartDigraph>::ArcIt a(tempGraph); a!=INVALID; ++a) {
             arcFlow[a] += amountOnArc[ a ];
             arcDays[a]++;
@@ -118,6 +138,12 @@ int main(int argc, char** argv){
         mGraphActivator.deactivate( time);
         
     }
+    // ================================================================================
+    // === Components
+    // ================================================================================
+    
+    connectedComponents( undirector( mGraph ), mComponents);
+    
     // ================================================================================
     cout << "Calculation Time: \t" << T.realTime() << "\n";
     T.restart();
@@ -130,9 +156,12 @@ int main(int argc, char** argv){
     .nodeMap("lastActiveDay", nodeLastDay)
     .nodeMap("outFlow", outFlow)
     .nodeMap("inFlow", inFlow)
+    .nodeMap("maxInFlowDaily", maxInFlowPerDay)
+    .nodeMap("maxOutFlowDaily", maxOutFlowPerDay)
     .nodeMap("flowSum", flowSum)
     .nodeMap("inDegree", inDegree)
     .nodeMap("outDegree", outDegree)
+    .nodeMap("componentID", mComponents)
     .arcMap("flowSum", arcFlow)
     .arcMap("days", arcDays)
     .arcMap("lastActiveDay", arcLastDay)
